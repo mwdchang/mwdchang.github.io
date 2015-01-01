@@ -1,8 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="GithubPage">
 <head>
-<body>
-<h1> Test !!! </h1>
-</body>
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css"></link>
+<style>
+
+/* Override some unwanted defaults */
+.row {
+   max-width:72rem;
+}
+
+/*
+.side-nav li.active > a {
+  color: #FF8800 !important;
+  background: #EEE !important;
+}
+*/
+
+
+/* Additional styles */
+.page-main {
+   border-left: solid 1px #DDD;
+   border-right: solid 1px #DDD;
+   box-shadow: 2px 0px 1px 1px #EEE;
+   height: 100%;
+}
+</style>
+
 </head>
+<body data-ng-controller="MainController"> 
+<base href="/"/>
+<div class="row page-main"> 
+    <div class="small-3 columns">
+        <ul class="side-nav">
+            <li class="active">
+                <a data-ui-sref="home"><strong>Home</strong><br><small>Home</small></a>
+            </li>
+            <li>
+                <a data-ui-sref="visualizations"><strong>Visualization Demos</strong><br><small>Neat Little Things...</small></a>
+            </li>
+            <li>
+                <a data-ui-sref="graphics"><strong>Graphics Demos</strong><br><small>Pretty Little Things...</small></a>
+            </li>
+            <li>
+                <a data-ui-sref="projects"><strong>Projects</strong><br><small>On going...</small></a>
+            </li>
+            <li>
+                <a data-ui-sref="about"><strong>About</strong><br><small>Me me me!</small></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="small-9 columns">
+        <div data-ui-view></div>
+    </div>
+</div>
+</body>
+<script>
+var app = angular.module('GithubPage', ['ui.router']);
+
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  // $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise('/');
+
+  $stateProvider.state('home', {
+    url: '/',
+    templateUrl: 'home.html'  
+  })
+  .state('about', {
+    url: '/about',
+    templateUrl: 'about.html'
+  });
+});
+
+
+app.controller('MainController', function() {
+});
+
+</script>
 </html>
