@@ -5,21 +5,23 @@
 <script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css"></link>
 <style>
 
-/* Override some unwanted defaults */
+/* Override some unwanted defaults. Only 62rem...really?!?!? */
 .row {
    max-width:72rem;
 }
 
-/*
+
 .side-nav li.active > a {
-  color: #FF8800 !important;
+  color: #335599 !important;
   background: #EEE !important;
+  border-radius: 0.5rem;
 }
-*/
+
 
 
 /* Additional styles */
@@ -28,7 +30,9 @@
    border-right: solid 1px #DDD;
    box-shadow: 2px 0px 1px 1px #EEE;
    height: 100%;
+   background-color:#FCFCFC;
 }
+
 </style>
 
 </head>
@@ -36,26 +40,24 @@
 <base href="/"/>
 <div class="row page-main"> 
     <div class="small-3 columns">
+        <nav>
         <ul class="side-nav">
-            <li class="active">
+            <li class="{{currentState === 'home'? 'active': ''}}">
                 <a data-ui-sref="home"><strong>Home</strong><br><small>Home</small></a>
             </li>
-            <li>
+            <li class="{{currentState === 'visualizations'? 'active': ''}}">
                 <a data-ui-sref="visualizations"><strong>Visualization Demos</strong><br><small>Neat Little Things...</small></a>
             </li>
-            <li>
+            <li class="{{currentState === 'graphics'? 'active': ''}}">
                 <a data-ui-sref="graphics"><strong>Graphics Demos</strong><br><small>Pretty Little Things...</small></a>
             </li>
-            <li>
-                <a data-ui-sref="projects"><strong>Projects</strong><br><small>On going...</small></a>
-            </li>
-            <li>
+            <li class="{{currentState === 'about'? 'active': ''}}">
                 <a data-ui-sref="about"><strong>About</strong><br><small>Me me me!</small></a>
             </li>
         </ul>
+        </nav>
     </div>
-
-    <div class="small-9 columns">
+    <div class="small-8 columns" style="overflow-y:scroll; max-height:85%">
         <div data-ui-view></div>
     </div>
 </div>
@@ -71,6 +73,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     url: '/',
     templateUrl: 'home.html'  
   })
+  .state('visualizations', {
+    url: '/visualizations',
+    templateUrl: 'visualizations.html'
+  })
+  .state('graphics', {
+    url: '/graphics',
+    templateUrl: 'graphics.html'
+  })
   .state('about', {
     url: '/about',
     templateUrl: 'about.html'
@@ -78,7 +88,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 });
 
 
-app.controller('MainController', function() {
+app.controller('MainController', function($rootScope, $scope) {
+   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { 
+     $scope.currentState = toState.name;
+     if (window.clock) {
+       clearInterval(clock)
+     }
+     console.log('toState', toState);
+   })
 });
 
 </script>
