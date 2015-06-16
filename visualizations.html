@@ -36,10 +36,33 @@
        
        <strong>Visual query builder</strong>
        <p>
+          I wrote a very primitive prototype to demonstrate how a visual query interface works. The basic idea is that the
+          researchers may have several queries (i.e. 40+ AND alive AND gene XYZ and gene ABC) that they are interested in. How he/she
+          wants to see the cumulative results of all queries, while still keep track of the originals in order to see the impact.
        </p>
+
+       <strong>Metadata viewer</strong>
+       <p>
+          I wrote a meta data viewer because I got tired of reading the gigantic JSON document that serves as our data dictionary. The viewer
+          offers several different perspectives (tabular, relational and summary), allows the users to perform a diff operation across different 
+          data dictionary versions, and provides several useful searching capabilities. This ends up quite useful, as data dictionary changes 
+          every release and this gives us, as well as the data submitters a good overview of what has changed
+          and how to go about data migration.
+       </p>
+
 
        <strong>Top mutated genes with parallel coords</strong>
        <p>
+           This is an attempt to redesign the stacked-bar chart that shows how the top 20 mutated genes prevail across 
+           different cancer projects. Because hues are used to encode the 50+ projects, it is very difficult to read. The variances
+           in the data also make it difficult to interact with the chart. <br>
+
+           The parallel coord plot solves some of the issues listed above by:
+           <ul>
+               <li>Normalizing gene occurrences in a project to %-based instead of absolute values, this reduces the variances.</li>
+               <li>Genes are more comparable across projects, genes can be re-arranged to see different relations</li>
+               <li>Query API to highlight genes, projects and %-affected</li>
+           </ul>
        </p>
 
        <strong>Enhanced bar chart</strong>
