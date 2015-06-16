@@ -1,1 +1,42 @@
-<div> Under construction </div>
+<div class="row">
+   <div class="small-12 columns"> 
+       <p>
+           My day job deals with <a href="https://dcc.icgc.org" target="_blank">cancer genomics</a>. 
+
+           To promote better data access and comprehension. I designed a quite a few proof-of-concept visualizations at work to explore better ways of 
+           exploring and interacting with genomics data. As with most proof of concepts, many of these are quite rough around the edges, they are merely
+           meant to illustrate an idea.
+       </p>
+       <br>
+
+       <strong>Using Arc-Diagram for set interactions</strong>
+       <p>
+           Designed to handle set-analyses and to be used in place of the more venerable Venn/Euler diagrams. The same subsets are highlighted across
+           multiple encompassing sets, with the arcs acting as guides.
+           <img src="/images/arcs.png"></img>
+           The key advantages are: 
+           <ul>
+              <li>Arc-digram scales better, we can comfortably fit 5-6 set intersections before usability becomes an issue. 
+              <li>We don't have degenerate cases where the overlapping propotions cannot be accurated represented (with circles). 
+           </ul>
+           <a href="http://bl.ocks.org/mwdchang/b2b905a8cf359125be84" target="_blank">Interactive Demo</a>
+       </p> 
+
+       <strong>Using small multiples to investigate donor traits</strong>
+       <p>
+           A donor has many physical and clinical traits; gender, status, age...etc. In order to see how one trait reacts with another, I designed
+           a small multiple bar charts to do this.
+           <img src="/images/smallmultiple.png"></img> <br>
+           The traits are listed as dimensions, the point is to see how dimension #2 varies across unique values of dimension #1. For example one may 
+           want to see how vital status varies arcoss different primary cancer sites.  <br><br>
+           <a href="http://bl.ocks.org/mwdchang/ac4a8d8dd8ac56cf0006" target="_blank">Interactive Demo</a><br>
+       </p>
+       
+       <strong>Visual query builder</strong>
+       <p>
+       </p>
+
+       <strong>Using parallel coordinates to see top mutated genes</strong>
+
+   </div>
+</div>
