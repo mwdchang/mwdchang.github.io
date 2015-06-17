@@ -44,9 +44,20 @@ p, li {
 }
 
 
+
 body {
    margin: 0.1rem;
 }
+
+.tile {
+   float: left;
+   margin: 0.5rem;
+   display: block;
+   width: 10rem;
+   height: 10rem;
+}
+
+
 </style>
 
 </head>
@@ -107,6 +118,35 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 
 app.controller('MainController', function($rootScope, $scope) {
+
+   $scope.gallery = [
+     { 
+        img: '/images/g_cssball.png',
+        url: 'https://github.com/mwdchang/Demos/tree/master/cssBall'
+     },
+     { 
+        img: '/images/g_circles.png',
+        url: 'https://github.com/mwdchang/Demos/tree/master/circles'
+     },
+     { 
+        img: '/images/g_quadtree.png',
+        url: 'https://github.com/mwdchang/VisDemos/tree/master/quadTree'
+     },
+     { 
+        img: '/images/g_fractal.png',
+        url: ''
+     },
+     { 
+        img: '/images/g_cssball.png',
+        url: ''
+     },
+     { 
+        img: '/images/g_cssball.png',
+        url: ''
+     },
+   ];
+
+
    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { 
      $scope.currentState = toState.name;
      if (window.clock) {

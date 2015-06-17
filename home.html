@@ -15,87 +15,15 @@
          I use this page to showcase some of my projects.
      </p>
      <br>
+
+     
+     <div style="display: table">
+         <div class="tile" data-ng-repeat="pic in gallery">
+            <a href="{{pic.url}}" target="_blank"><img src="{{pic.img}}"></img></a>
+         </div>
+     </div>
+
+
    
-    <span> Selected GitHub Repositories</span>
-     <table>
-         <tbody>
-             <tr>
-                 <td> 
-                     <p><strong><a href="https://github.com/mwdchang/VisDemos" target="_blank">VisDemos</a></strong><br>
-                     A collection of visualization demos, proof-of-concepts and other miscellaneous things. All these are in written in Javascript.
-                     Find out more about it in the <a data-ui-sref="visualizations">Visualization Demos</a> section.
-                     </p>
-
-                     <a class="th" href="https://lh4.googleusercontent.com/-1pugpNKYx30/VM1LUuys0MI/AAAAAAAACMs/y44g7DnYARY/s1024/bubble1.png">
-                         <img src="https://lh4.googleusercontent.com/-1pugpNKYx30/VM1LUuys0MI/AAAAAAAACMs/y44g7DnYARY/s1024/bubble1.png" width="150" height="120">
-                     </a>
-                     <a class="th" href="https://lh3.googleusercontent.com/-UarTt7iGsbw/VM1LUq4H-gI/AAAAAAAACMo/rJW6EojGWQQ/s1024/arcs.png">
-                         <img src="https://lh3.googleusercontent.com/-UarTt7iGsbw/VM1LUq4H-gI/AAAAAAAACMo/rJW6EojGWQQ/s1024/arcs.png" width="150" height="120">
-                     </a>
-                     <a class="th" href="https://lh4.googleusercontent.com/-XOKp0j_oZVk/VM1LVNsCDuI/AAAAAAAACMw/WgE7N5VYp00/s1024/parallel.png">
-                         <img src="https://lh4.googleusercontent.com/-XOKp0j_oZVk/VM1LVNsCDuI/AAAAAAAACMw/WgE7N5VYp00/s1024/parallel.png" width="200" height="120">
-                     </a>
-
-                 </td>
-             </tr>
-             <tr>
-                 <td> 
-                     <p><strong><a href="https://github.com/mwdchang/VehicleVis" target="_blank">Visualizing Entities in Text Documents with Descriptive NPR</a></strong><br>
-                     Using non-photorealistic graphics, information visualization and natural language processing techniques to make sense of hundreds of 
-                     thoudands of vehicle defect reports filed from NHTSA. <br>
-                     
-                     This application allows people to invetigate and explore quality/safety issues in intuitive manner by take advantage of real world
-                     metaphors. <br>
-
-                     This work is published in <a href="http://dx.doi.org/10.1109/PacificVis.2013.6596122" target="_blank">Pacific VIS 2013</a>. 
-                     </p>
-
-                     <a class="th" href="https://www.flickr.com/photos/vialab/8281430605">
-                         <img src="https://farm9.staticflickr.com/8215/8281430605_c651fb3e10_m.jpg" width="240" height="111"> 
-                     </a>
-                     <a class="th" href="https://www.flickr.com/photos/vialab/8281618917">
-                         <img src="https://farm9.staticflickr.com/8353/8281618917_a73bdec2b0_t.jpg" width="100" height="89">
-                     </a>
-                     <a class="th" href="https://www.flickr.com/photos/vialab/8282686970">
-                         <img src="https://farm9.staticflickr.com/8075/8282686970_d304584b4b_q.jpg" width="150" height="150">
-                     </a>
-
-                     <ul>
-                        <li> 
-                            <a href="http://vialab.science.uoit.ca/portfolio/exploring-text-entities-with-descriptive-non-photorealistic-rendering"
-                               target="_blank">Project Page</a>
-                        </li>
-                     </ul>
-
-
-                     <br><br>
-                     The research is also a SurfNet project and was featured in <a href="http://nserc-surfnet.ca/system/newsletters/newsletters/000/000/019/original/13.May-June_2012_Newsletter.pdf?1395099840">May/June 2012 newsletter</a>
-                 </td>
-             </tr>
-             <tr>
-                 <td> 
-                     <p><strong><a href="https://github.com/mwdchang/JOGLKit" target="_blank">JOGL Kit</a></strong><br> A toolkit for JOGL. This was developed along with my Master's project. It provides bootstrapping utitlies
-                     for quickly prototyping OpenGL in Java. Also has some interesting shaders and window compositing functions.
-                     </p>
-
-
-                     <a class="th" href="https://lh3.googleusercontent.com/-ydsl68kPQSE/VM0_9MgRw-I/AAAAAAAACMI/SWLVt7cZ_ww/s800/collage1.png">
-                        <img src="https://lh3.googleusercontent.com/-ydsl68kPQSE/VM0_9MgRw-I/AAAAAAAACMI/SWLVt7cZ_ww/s800/collage1.png" width="125" height="125">
-                     </a>
-                     <a class="th" href="https://lh4.googleusercontent.com/-M2k48HAL1Os/VM0_8uAM-FI/AAAAAAAACMA/EPxdjvEFBT4/s576/sqRot3.png">
-                        <img src="https://lh4.googleusercontent.com/-M2k48HAL1Os/VM0_8uAM-FI/AAAAAAAACMA/EPxdjvEFBT4/s576/sqRot3.png" width="125" height="125">
-                     </a>
-                     <a class="th" href="https://lh4.googleusercontent.com/-bxp20jpjmGc/VM0_8OReH1I/AAAAAAAACL8/gyFXwMT8uCM/s576/ribbon1.png">
-                        <img src="https://lh4.googleusercontent.com/-bxp20jpjmGc/VM0_8OReH1I/AAAAAAAACL8/gyFXwMT8uCM/s576/ribbon1.png" width="125" height="125">
-                     </a>
-                     <a class="th" href="https://lh6.googleusercontent.com/-h_xAiwxsuX8/VM0_7bQ3srI/AAAAAAAACLw/fPBfB069prY/s512/fractal3.png">
-                        <img src="https://lh6.googleusercontent.com/-h_xAiwxsuX8/VM0_7bQ3srI/AAAAAAAACLw/fPBfB069prY/s512/fractal3.png" width="125" height="125">
-                     </a>
-
-                 </td>
-             </tr>
-         </tbody>
-     </table>
    </div>
-
 </div>
