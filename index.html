@@ -2,6 +2,7 @@
 <html data-ng-app="GithubPage">
 <head>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.js"></script>
 <script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
@@ -51,10 +52,10 @@ body {
 
 .tile {
    float: left;
-   margin: 0.6rem;
+   margin: 0.7rem;
    display: block;
-   width: 10rem;
-   height: 10rem;
+   width: 12rem;
+   height: 12rem;
 }
 
 
@@ -119,53 +120,80 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 app.controller('MainController', function($rootScope, $scope) {
 
-   $scope.gallery = [
+   var gallery = [
      { 
         img: '/images/g_cssball.png',
+        desc: '3D Sphere with CSS',
         url: 'https://github.com/mwdchang/Demos/tree/master/cssBall'
      },
      { 
         img: '/images/g_circles.png',
+        desc: 'Shader demo',
         url: 'https://github.com/mwdchang/Demos/tree/master/circles'
      },
      { 
         img: '/images/g_quadtree.png',
+        desc: 'Quad tree ... everyone needs a quad tree',
         url: 'https://github.com/mwdchang/VisDemos/tree/master/quadTree'
      },
      { 
         img: '/images/g_fractal.png',
+        desc: 'Fractal with webGL Shaders',
         url: 'https://github.com/mwdchang/Demos/tree/master/fractal'
      },
      { 
         img: '/images/g_noise.png',
+        desc: 'Perlin noise functions',
         url: 'https://github.com/mwdchang/Demos/tree/master/noiseGen'
      },
      { 
         img: '/images/g_shader.png',
+        desc: 'Procedurally generated textures',
         url: 'https://github.com/mwdchang/Demos/tree/master/shaderThreeJS'
      },
      { 
         img: '/images/g_clock.png',
+        desc: 'Abstract clock with D3',
         url: 'https://github.com/mwdchang/VisDemos/tree/master/clock'
      },
      { 
         img: '/images/g_touchpong.jpg',
+        desc: 'My multi touch surface pong game',
         url: 'https://github.com/mwdchang/MPong'
      },
      { 
         img: '/images/g_arcs.png',
-        url: ''
+        desc: 'Arc diagram',
+        url: 'https://github.com/mwdchang/VisDemos/tree/master/arcs'
      },
      { 
         img: '/images/g_polaroid.png',
-        url: ''
+        desc: 'Image processing and filters',
+        url: 'https://github.com/mwdchang/Demos/tree/master/polaroidComposite'
      },
      {
         img: '/images/g_orbit.png',
-        url: ''
+        desc: 'Circular orbits with Pixi',
+        url: 'https://github.com/mwdchang/Demos/tree/master/pixiTest'
+     },
+     {
+        img: '/images/g_thesis.png',
+        desc: 'VehicleVis: combinging text visualiation with 3D graphcis',
+        url: 'https://github.com/mwdchang/VehicleVis'
+     },
+     {
+        img: '/images/g_ribbon.png',
+        desc: 'OpenGL ribbon effects',
+        url: 'https://github.com/mwdchang/JOGLKit'
+     },
+     {
+        img: '/images/g_grid.png',
+        desc: 'Portable grids',
+        url: 'http://vialab.science.uoit.ca/mwdchang/projects/grid/testGrid.html'
      }
-
    ];
+
+   $scope.gallery = _.shuffle(gallery);
 
 
    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { 

@@ -12,14 +12,19 @@
          Data Visualization, Graphics and Human Computer Interaction.
      </p>
      <p>
-         I use this page to showcase some of my projects.
+         I use this page to showcase some of my projects and demos.
      </p>
      <br>
 
      
      <div style="display: table">
-         <div class="tile" data-ng-repeat="pic in gallery">
-            <a href="{{pic.url}}" target="_blank"><img src="{{pic.img}}"></img></a>
+         <div class="tile" data-ng-repeat="pic in gallery" data-ng-mouseenter="hover=true" data-ng-mouseleave="hover=false">
+            <a href="{{pic.url}}" target="_blank">
+               <div style="padding:1rem; position:absolute; background: #BBB; width:12rem; height: 12rem; opacity:0.7; color:#112" data-ng-if="hover===true">
+                  {{pic.desc}}
+               </div>
+               <img data-ng-src="{{pic.img}}"></img>
+            </a>
          </div>
      </div>
 
