@@ -86,8 +86,8 @@ body {
         <div style="margin:0.5rem">
             <svg id="canvas"></svg>
         </div>
-        <div>
-           <small>This page is built with Foundation, angularJS, D3 and jQuery.</small>
+        <div style="line-height:0.75rem">
+           <small>This page is built with Foundation, angularJS, D3 and some other stuff thrown in for good measure.</small>
         </div>
 
     </div>
@@ -188,9 +188,20 @@ app.controller('MainController', function($rootScope, $scope) {
      },
      {
         img: '/images/g_grid.png',
-        desc: 'Portable grids',
+        desc: 'Portable grids (reduce grid) experiment',
         url: 'http://vialab.science.uoit.ca/mwdchang/projects/grid/testGrid.html'
+     },
+     {
+        img: '/images/g_lens.png',
+        desc: 'Magic lens technique',
+        url: 'https://github.com/mwdchang/VisDemos/tree/master/lens'
+     },
+     {
+        img: '/images/g_fisheye.png',
+        desc: 'Fisheye Shader',
+        url: 'https://github.com/mwdchang/Demos/tree/master/fisheye'
      }
+
    ];
 
    $scope.gallery = _.shuffle(gallery);

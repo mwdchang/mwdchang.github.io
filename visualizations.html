@@ -3,16 +3,23 @@
        <p>
            My day job deals with <a href="https://dcc.icgc.org" target="_blank">cancer genomics</a>. 
 
-           To promote better data access and comprehension. I designed a quite a few proof-of-concept visualizations for my team at work to explore better ways of 
-           exploring and interacting with genomics data. As with most proof of concepts, many of these are quite rough around the edges, they are merely
-           meant to illustrate an idea.
+           I designed a quite a few proof-of-concept visualizations for my team at work to explore better ways of 
+           exploring and interacting with genomics data. As with most proof-of-concepts, many of these are quite rough around the edges, they are merely
+           meant to illustrate an idea and serve as a starting point.
        </p>
        <br>
 
        <strong>Using Arc-Diagram for set interactions</strong>
        <p>
-           Designed to handle set-analyses and to be used in place of the more venerable Venn/Euler diagrams. The same subsets are highlighted across
-           multiple encompassing sets, with the arcs acting as guides.
+           We use the venerable Venn/Euler diagram to illustrate set operations; for example set of overlapped genes from two cancer types. Venn diagrams
+           are easy to understand but does not scale well with the number of sets involved. Also, it is non-trivial to arrange the sets in an 
+           area-propotional manner.
+       </p>
+       <p>
+
+           Arc-digrams can be used in place of Venns. Each contiguous block represents set, the sub-blocks are the intersecting subsets and the arcs denotes
+           the relations. Below shows the intersecting sets of Set 2.
+
            <img src="/images/arcs.png"></img>
            The key advantages are: 
            <ul>
@@ -28,11 +35,13 @@
 
        <strong>Using small multiples to investigate donor traits</strong>
        <p>
-           A donor has many physical and clinical traits; gender, status, age...etc. In order to see how one trait reacts with another, I designed
-           a small multiple bar charts to do this.<br>
+           A donor has many physical and clinical traits; gender, status, age, project...etc. It can be interesting to see how one trait relates
+           to another; for example what is the age distribution across different projects. I built a small-multiple prototype against production API
+           as a live demonostration. Each bar chart shows the number of donors of a given trait (Dimension #1) varies across a second trait (Dimension #2), 
+           with the height of the bar itself denoting the number of donors.<br>
+           
            <img src="/images/smallmultiple.png"></img> <br>
-           The traits are listed as dimensions, the point is to see how dimension #2 varies across unique values of dimension #1. For example one may 
-           want to see how vital status varies arcoss different primary cancer sites.  <br><br>
+           <br><br>
            <a href="http://bl.ocks.org/mwdchang/ac4a8d8dd8ac56cf0006" target="_blank"><i class="fi-play"></i> Interactive Demo</a><br>
        </p>
        <br>
@@ -40,9 +49,11 @@
        
        <strong>Visual query builder</strong>
        <p>
-          I wrote a very primitive prototype to demonstrate how a visual query interface works. The basic idea is that the
-          researchers may have several queries (i.e. age 40+ AND alive AND gene XYZ and gene ABC) that they are interested in. How he/she
-          wants to see the cumulative results of all queries, while still keep track of the originals in order to see the impact.
+          I wrote a very primitive prototype to demonstrate how a visual query interface can works. Each node represents an expression/condition.
+          Nodes can be combined together to form new expressions/conditions. The basic premise is to provide researchers a way to visualize and to
+          track their workflow. Starting with a simple query, they can incrementally refine or widen the criteria. The DAG representation provides
+          an easy way for them to review results at each step of the process, and allows the construction of complex queries.
+
           <br>
           <img src="/images/query.png"></img> 
           <br>
