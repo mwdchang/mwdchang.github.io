@@ -4,7 +4,7 @@
            My day job deals with <a href="https://dcc.icgc.org" target="_blank">cancer genomics</a>. 
 
            I designed a quite a few proof-of-concept visualizations for my team at work to explore better ways of 
-           exploring and interacting with genomics data. As with most proof-of-concepts, many of these are quite rough around the edges, they are merely
+           exploring and interacting with genomic data. As with most proof-of-concepts, many of these are quite rough around the edges, they are merely
            meant to illustrate an idea and serve as a starting point.
        </p>
        <br>
@@ -24,7 +24,7 @@
            The key advantages are: 
            <ul>
               <li>Arc-digram scales better, we can comfortably fit 5-6 set intersections before usability becomes an issue. </li>
-              <li>We don't have degenerate cases where the overlapping propotions cannot be accurated represented (with circles).</li> 
+              <li>We don't have degenerate cases where the overlapping proportions cannot be accurately represented (with circles).</li> 
            </ul>
            <p>
                <a href="http://bl.ocks.org/mwdchang/b2b905a8cf359125be84" target="_blank"><i class="fi-play"></i> Interactive Demo</a>
@@ -37,7 +37,7 @@
        <p>
            A donor has many physical and clinical traits; gender, status, age, project...etc. It can be interesting to see how one trait relates
            to another; for example what is the age distribution across different projects. I built a small-multiple prototype against production API
-           as a live demonostration. Each bar chart shows the number of donors of a given trait (Dimension #1) varies across a second trait (Dimension #2), 
+           as a live demonstration. Each bar chart shows the number of donors of a given trait (Dimension #1) varies across a second trait (Dimension #2), 
            with the height of the bar itself denoting the number of donors.<br>
            
            <img src="/images/smallmultiple.png"></img> <br>
@@ -51,7 +51,7 @@
        <p>
           I wrote a very primitive prototype to demonstrate how a visual query interface can works. Each node represents an expression/condition.
           Nodes can be combined together to form new expressions/conditions. The basic premise is to provide researchers a way to visualize and to
-          track their workflow. Starting with a simple query, they can incrementally refine or widen the criteria. The DAG representation provides
+          track their work flow. Starting with a simple query, they can incrementally refine or widen the criteria. The DAG representation provides
           an easy way for them to review results at each step of the process, and allows the construction of complex queries.
 
           <br>
@@ -64,7 +64,7 @@
        <br>
        <br>
 
-       <strong>Metadata viewer</strong>
+       <strong>Meta data viewer</strong>
        <p>
           I wrote a meta data viewer because I got tired of reading the gigantic JSON document that serves as our data dictionary. The viewer
           offers several different perspectives (tabular, relational and summary), allows the users to perform a diff operation across different 
@@ -77,13 +77,13 @@
        <br>
 
 
-       <strong>Top mutated genes with parallel coords</strong>
+       <strong>Top mutated genes with parallel coordinates</strong>
        <p>
            This is an attempt to redesign the stacked-bar chart that shows how the top 20 mutated genes prevail across 
            different cancer projects. Because hues are used to encode the 50+ projects, it is very difficult to read. The variances
            in the data also make it difficult to interact with the chart. <br>
 
-           The parallel coord plot solves some of the issues listed above by:
+           The parallel coordinate plot solves some of the issues listed above by:
            <ul>
                <li>Normalizing gene occurrences in a project to %-based instead of absolute values, this reduces the variances.</li>
                <li>Genes are more comparable across projects, genes can be re-arranged to see different relations</li>
