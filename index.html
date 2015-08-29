@@ -66,9 +66,9 @@ body {
 </style>
 
 </head>
-<body data-ng-controller="MainController" style="overflow:hidden">  
+<body data-ng-controller="MainController" style="overflow:hidden">
 <base href="/"/>
-<div class="row page-main"> 
+<div class="row page-main">
     <div class="small-3 columns">
         <nav>
         <ul class="side-nav">
@@ -77,6 +77,9 @@ body {
             </li>
             <li class="{{currentState === 'visualizations'? 'active': ''}}">
                 <a data-ui-sref="visualizations"><strong>Visualization Demos</strong><br><small>Proof of concepts</small></a>
+            </li>
+            <li class="{{currentState === 'misc'? 'active': ''}}">
+                <a data-ui-sref="misc"><strong>Miscellaneou/Util</strong><br><small>Misc and Tools</small></a>
             </li>
             <li class="{{currentState === 'graphics'? 'active': ''}}">
                 <a data-ui-sref="graphics"><strong>Graphics Demos</strong><br><small>Pretty Little Things...</small></a>
@@ -109,7 +112,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $stateProvider.state('home', {
     url: '/',
-    templateUrl: 'home.html'  
+    templateUrl: 'home.html'
   })
   .state('visualizations', {
     url: '/visualizations',
@@ -118,6 +121,10 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   .state('graphics', {
     url: '/graphics',
     templateUrl: 'graphics.html'
+  })
+  .state('misc', {
+    url: '/misc',
+    templateUrl: 'misc.html'
   });
 });
 
@@ -125,52 +132,52 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 app.controller('MainController', function($rootScope, $scope) {
 
    var gallery = [
-     { 
+     {
         img: '/images/g_cssball.png',
         desc: '3D Sphere with CSS',
         url: 'https://github.com/mwdchang/Demos/tree/master/cssBall'
      },
-     { 
+     {
         img: '/images/g_circles.png',
         desc: 'Shader demo',
         url: 'https://github.com/mwdchang/Demos/tree/master/circles'
      },
-     { 
+     {
         img: '/images/g_quadtree.png',
         desc: 'Quad tree ... everyone needs a quad tree',
         url: 'https://github.com/mwdchang/VisDemos/tree/master/quadTree'
      },
-     { 
+     {
         img: '/images/g_fractal.png',
         desc: 'Fractal with webGL Shaders',
         url: 'https://github.com/mwdchang/Demos/tree/master/fractal'
      },
-     { 
+     {
         img: '/images/g_noise.png',
         desc: 'Perlin noise functions',
         url: 'https://github.com/mwdchang/Demos/tree/master/noiseGen'
      },
-     { 
+     {
         img: '/images/g_shader.png',
         desc: 'Procedurally generated textures',
         url: 'https://github.com/mwdchang/Demos/tree/master/shaderThreeJS'
      },
-     { 
+     {
         img: '/images/g_clock.png',
         desc: 'Abstract clock with D3',
         url: 'https://github.com/mwdchang/VisDemos/tree/master/clock'
      },
-     { 
+     {
         img: '/images/g_touchpong.jpg',
         desc: 'My multi touch surface pong game',
         url: 'https://github.com/mwdchang/MPong'
      },
-     { 
+     {
         img: '/images/g_arcs.png',
         desc: 'Arc diagram',
         url: 'https://github.com/mwdchang/VisDemos/tree/master/arcs'
      },
-     { 
+     {
         img: '/images/g_polaroid.png',
         desc: 'Image processing and filters',
         url: 'https://github.com/mwdchang/Demos/tree/master/polaroidComposite'
@@ -211,7 +218,7 @@ app.controller('MainController', function($rootScope, $scope) {
    $scope.gallery = _.shuffle(gallery);
 
 
-   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { 
+   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
      $scope.currentState = toState.name;
      if (window.clock) {
        clearInterval(clock)
@@ -236,15 +243,15 @@ var arcMinutes = d3.svg.arc().innerRadius(90).outerRadius(102).cornerRadius(3);
 var arcHours= d3.svg.arc().innerRadius(70).outerRadius(82).cornerRadius(3);
 
 function seconds2Radians(s) {
-  return 2 * s / 60 * Math.PI; 
+  return 2 * s / 60 * Math.PI;
 }
 
 function minutes2Radians(s) {
-  return 2 * s / 3600 * Math.PI; 
+  return 2 * s / 3600 * Math.PI;
 }
 
 function hours2Radians(s) {
-  return 2 * s / (12*3600) * Math.PI; 
+  return 2 * s / (12*3600) * Math.PI;
 }
 
 
@@ -277,7 +284,7 @@ var text = svg.append('text')
   .attr('text-anchor', 'middle')
   .attr('alignment-baseline', 'middle')
   .style('fill', '#EEE')
-  .style('font-family', 'Tahoma'); 
+  .style('font-family', 'Tahoma');
 
 
 for (var i=0; i < 60; i++) {
@@ -309,7 +316,7 @@ setInterval(function() {
 
   if (_seconds === 0) {
     d3.selectAll('.sec').style('opacity', 0.05);
-  } 
+  }
   d3.selectAll('.sec').filter(function(d) {
     return d.val <= _seconds;
   }).transition().duration(300).style('opacity', 1.0);
@@ -349,7 +356,7 @@ function arcTweenM(transition, minutesStart) {
     var interpolateStart = d3.interpolate(minutesStart, minutesStart + minutes2Radians(1));
 
     return function(t) {
-      d.startAngle = interpolateStart(t) + minutes2Radians(30); 
+      d.startAngle = interpolateStart(t) + minutes2Radians(30);
       d.endAngle = interpolateStart(t) + 2*Math.PI - minutes2Radians(30);
 
       return arcMinutes(d);
@@ -363,7 +370,7 @@ function arcTweenS(transition, secondsStart) {
     var interpolateStart = d3.interpolate(secondsStart, secondsStart + seconds2Radians(1));
 
     return function(t) {
-      d.startAngle = interpolateStart(t) + seconds2Radians(0.5); 
+      d.startAngle = interpolateStart(t) + seconds2Radians(0.5);
       d.endAngle = interpolateStart(t) + 2*Math.PI - seconds2Radians(0.5);
 
       return arcSeconds(d);
