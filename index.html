@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html data-ng-app="GithubPage">
-<head>
+<head >
 <title>Daniel Chang - Visualization/Graphics Playground</title>
 <meta charset="utf-8"></meta>
 <meta name="keywords" content="visualization, graphics, interaction, design, web, computer science, daniel chang, meng-wei chang, technology"/>
@@ -11,61 +11,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="lib/aclock.js"></script>
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css"></link>
 <link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css"></link>
-<style>
-
-/* Override some unwanted defaults. Only 62rem...really?!?!? */
-.row {
-   max-width:80rem;
-}
-
-
-.side-nav li.active > a {
-  color: #335599 !important;
-  background: #EEE !important;
-  border-radius: 0.5rem;
-}
-
-
-/* Additional styles */
-.page-main {
-   border-left: solid 1px #DDD;
-   border-right: solid 1px #DDD;
-   box-shadow: 2px 0px 1px 1px #EED;
-   height: 100%;
-   background-color:#FFFFFF;
-}
-
-img {
-  -moz-box-shadow: 0 0 5px #777;
-  -webkit-box-shadow: 0 0 5px #777;
-  box-shadow: 0px 0px 5px #777;
-}
-
-p, li {
-   font-size: 0.85rem;
-}
-
-
-
-body {
-   margin: 0.1rem;
-}
-
-.tile {
-   float: left;
-   margin: 0.7rem;
-   display: block;
-   width: 12rem;
-   height: 12rem;
-}
-
-
-</style>
-
+<link rel="stylesheet" type="text/css" href="style.css"></link>
 </head>
+
 <body data-ng-controller="MainController" style="overflow:hidden">
 <base href="/"/>
 <div class="row page-main">
@@ -89,14 +41,16 @@ body {
         <br>
         <br>
         <div>Clock</div>
-        <small>The gaps points to hours, minutes and seconds respectively</small>
+        <small><a href="https://github.com/mwdchang/VisDemos/tree/master/arc-clock" target="_blank">Customizable polar clocks</a></small>
         <div style="margin:0.5rem">
-            <svg id="canvas"></svg>
+            <div id="clock1" style="width:7rem; height: 7rem; display:inline-block"></div>
+            <div id="clock2" style="width:7rem; height: 7rem; display:inline-block"></div>
+            <div id="clock3" style="width:7rem; height: 7rem; display:inline-block"></div>
+            <div id="clock4" style="width:7rem; height: 7rem; display:inline-block"></div>
         </div>
         <div style="line-height:0.75rem">
            <small>This page is built with Foundation, angularJS, D3 and some other stuff thrown in for good measure.</small>
         </div>
-
     </div>
     <div class="small-9 columns" style="overflow-y:scroll; max-height:85%">
         <div data-ui-view></div>
@@ -128,9 +82,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   });
 });
 
-
 app.controller('MainController', function($rootScope, $scope) {
-
    var gallery = [
      {
         img: '/images/g_cssball.png',
@@ -212,11 +164,9 @@ app.controller('MainController', function($rootScope, $scope) {
         desc: 'Fisheye Shader',
         url: 'https://github.com/mwdchang/Demos/tree/master/fisheye'
      }
-
    ];
 
    $scope.gallery = _.shuffle(gallery);
-
 
    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
      $scope.currentState = toState.name;
@@ -226,157 +176,59 @@ app.controller('MainController', function($rootScope, $scope) {
      console.log('toState', toState);
    })
 });
-
 </script>
 
-
 <script>
-var width = 400, height = 400;
-var svg = d3.select('#canvas')
-  .attr('viewBox', '0 0 ' + width + ' ' + height)
-  .attr('preserveAspectRatio', 'xMidYMid')
-  .append('g')
-  .attr('transform', 'translate(' + 0.5*width + ',' + 0.5*height + ')');
+/* Clocks clocks clocks ... */
+var c1 = new ArcClock();
+c1.render('#clock1');
 
-var arcSeconds = d3.svg.arc().innerRadius(110).outerRadius(120).cornerRadius(3);
-var arcMinutes = d3.svg.arc().innerRadius(90).outerRadius(102).cornerRadius(3);
-var arcHours= d3.svg.arc().innerRadius(70).outerRadius(82).cornerRadius(3);
+var c2 = new ArcClock({
+  hourStyle: 'TICK',
+  hourInner: 110,
+  hourOuter: 180,
+  hourColour: '#BBB',
 
-function seconds2Radians(s) {
-  return 2 * s / 60 * Math.PI;
-}
+  minuteStyle: 'TICK',
+  minuteInner: 110,
+  minuteOuter: 220,
+  minuteColour: '#CCC',
 
-function minutes2Radians(s) {
-  return 2 * s / 3600 * Math.PI;
-}
+  secondInner: 110,
+  secondOuter: 290,
+  secondStyle: 'TICK',
+  secondColour: '#DDD',
 
-function hours2Radians(s) {
-  return 2 * s / (12*3600) * Math.PI;
-}
+  showWave: false
+});
+c2.render('#clock2');
 
+var c3 = new ArcClock({
+   hourStyle: 'ARC',
+   hourColour: '#F80',
+   minuteStyle: 'ARC',
+   minuteColour: '#FA0',
+   secondStyle: 'ARC',
+   secondColour: '#FD0',
+   waves: 5,
+   waveInner: 20,
+   waveOuter: 50,
+   waveColour: '#E30',
+   showCenter: false
+});
+c3.render('#clock3');
 
-var current = new Date();
+var c4 = new ArcClock({
+  hourStyle: 'ARC',
+  hourColour: '#2A0',
+  minuteColour: '#2C4',
+  miuteStyle: 'TICK',
 
-var seconds = svg.append('path')
-  .datum({
-    startAngle: 0,
-    endAngle: 0
-  })
-  .attr('d', arcSeconds).style('fill', '#88BBEE');
-
-var minutes = svg.append('path')
-  .datum({
-    startAngle: 0,
-    endAngle: 0
-  })
-  .attr('d', arcMinutes).style('fill', '#4477AA');
-
-var hours = svg.append('path')
-  .datum({
-    startAngle: 0,
-    endAngle: 0
-  })
-  .attr('d', arcHours).style('fill', '#224488');
-
-
-var c = svg.append('circle').attr('r', 65).style('fill', '#002266');
-var text = svg.append('text')
-  .attr('text-anchor', 'middle')
-  .attr('alignment-baseline', 'middle')
-  .style('fill', '#EEE')
-  .style('font-family', 'Tahoma');
-
-
-for (var i=0; i < 60; i++) {
-  var _secodnStart = seconds2Radians(i);
-  var arc = d3.svg.arc().innerRadius(123).outerRadius(130 + 35*Math.abs(Math.cos(Math.PI*i/ (60/6) ) ))
-    .startAngle( seconds2Radians( (i-0.43)%60))
-    .endAngle( seconds2Radians( (i+0.43)%60));
-
-  svg.append('path')
-    .datum({val: i})
-    .attr('class', 'sec')
-    .attr('d', arc).style('fill', '#88BBEE').style('opacity', 0.05);
-}
-
-setInterval(function() {
-  var now = new Date();
-  var _seconds = now.getSeconds();
-  var _minutes = now.getMinutes();
-  var _hours = now.getHours() % 12;
-
-  var _secondsStart = seconds2Radians((_seconds-1)%60);
-  var _minutesStart = minutes2Radians(_minutes*60 + _seconds);
-  var _hoursStart = hours2Radians(_hours * 60*60 + _minutes*60 + _seconds);
-
-
-  var dateStr = (_hours < 10? '0' + _hours : _hours) + ':' +
-    (now.getMinutes() < 10? '0' + now.getMinutes() : now.getMinutes()) + ':' +
-    (now.getSeconds() < 10? '0' + now.getSeconds() : now.getSeconds());
-
-  if (_seconds === 0) {
-    d3.selectAll('.sec').style('opacity', 0.05);
-  }
-  d3.selectAll('.sec').filter(function(d) {
-    return d.val <= _seconds;
-  }).transition().duration(300).style('opacity', 1.0);
-
-  seconds.transition().duration(300)
-    .call(arcTweenS, _secondsStart);
-
-  minutes.transition().duration(300)
-    .call(arcTweenM, _minutesStart);
-
-  hours.transition().duration(300)
-    .call(arcTweenH, _hoursStart);
-
-  text.text(dateStr);
-}, 1000);
-
-
-function arcTweenH(transition, hoursStart) {
-  transition.attrTween('d', function(d) {
-
-    var interpolateStart = d3.interpolate(hoursStart, hoursStart + hours2Radians(1));
-
-    return function(t) {
-      d.startAngle = interpolateStart(t) + hours2Radians(20*60);  // inc 1/2 hour
-      d.endAngle = interpolateStart(t) + 2*Math.PI - hours2Radians(20*60);
-
-      return arcHours(d);
-    };
-  });
-}
-
-
-
-function arcTweenM(transition, minutesStart) {
-  transition.attrTween('d', function(d) {
-
-    var interpolateStart = d3.interpolate(minutesStart, minutesStart + minutes2Radians(1));
-
-    return function(t) {
-      d.startAngle = interpolateStart(t) + minutes2Radians(30);
-      d.endAngle = interpolateStart(t) + 2*Math.PI - minutes2Radians(30);
-
-      return arcMinutes(d);
-    };
-  });
-}
-
-function arcTweenS(transition, secondsStart) {
-  transition.attrTween('d', function(d) {
-
-    var interpolateStart = d3.interpolate(secondsStart, secondsStart + seconds2Radians(1));
-
-    return function(t) {
-      d.startAngle = interpolateStart(t) + seconds2Radians(0.5);
-      d.endAngle = interpolateStart(t) + 2*Math.PI - seconds2Radians(0.5);
-
-      return arcSeconds(d);
-    };
-  });
-}
+  showCenter: false,
+  showWave: false,
+  showSecond: false
+});
+c4.render('#clock4');
 
 </script>
 

@@ -1,0 +1,40 @@
+.row {
+   max-width:80rem;
+}
+
+.side-nav li.active > a {
+  color: #335599 !important;
+  background: #EEE !important;
+  border-radius: 0.5rem;
+}
+
+/* Additional styles */
+.page-main {
+   border-left: solid 1px #DDD;
+   border-right: solid 1px #DDD;
+   box-shadow: 2px 0px 1px 1px #EED;
+   height: 100%;
+   background-color:#FFFFFF;
+}
+
+img {
+  -moz-box-shadow: 0 0 5px #777;
+  -webkit-box-shadow: 0 0 5px #777;
+  box-shadow: 0px 0px 5px #777;
+}
+
+p, li {
+   font-size: 0.85rem;
+}
+
+body {
+   margin: 0.1rem;
+}
+
+.tile {
+   float: left;
+   margin: 0.7rem;
+   display: block;
+   width: 12rem;
+   height: 12rem;
+}
