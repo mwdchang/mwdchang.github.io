@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.8/d3.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+<style>
+body {
+   margin: 1rem;
+   font-family: Tahoma;
+   font-size: 0.85rem;
+}
+div {
+   margin: 0.5rem;
+}
+
+.range-control {
+   display: inline-block;
+   margin-right: 2rem;
+}
+
+</style>
+</head>
+<body>
+<h3>DBSCAN - Clustering Visualization</h3>
+<p>
+   DBSCAN implemented as per https://en.wikipedia.org/wiki/DBSCAN. Hover over the bars to see how the cluster is formed.
+   Use the range sliders to adjust eps (distance) and the minimum cluster size.
+</p>
+
+<div>
+   <span class="range-control">
+      Minimum cluster size: <span id="sizeLabel">4</span><br>
+      <input id="sizeSlider" type="range" min="2" max="25" value="4" oninput="updateInput()"/>
+   </span>
+   <span class="range-control">
+      Minimum distance: <span id="distLabel">20</span><br>
+      <input id="distSlider" type="range" min="5" max="50" value="20" oninput="updateInput()"/>
+   </span>
+</div>
+
+<div style="float:left;width:35%"><svg id="canvas"><svg></div>
+<div style="float:left;width:40%"><svg id="summary"></svg></body>
+<script>
+
+var w = 300;
+var h = 300;
+var vis;
+
+var dataPoints = [];
+
+var clusters = [];
+var lineages = [];
+var lineageIndex = 0;
+
+var numPoints = 200;
+var minimumSize = 4;
+var eps = 20.0;
+
+
+var colourScale = d3.scale.category20c();
+
+
+initPoints();
+updateInput();
+initCanvas();
+dbscan();
+
+console.log(clusters);
+markCluster();
+
+
+function updateInput() {
+   if (! vis) return; // Not ready yet
+
+   lineages = [];
+
+   var dist = +d3.select('#distSlider').node().value;
+   var size = +d3.select('#sizeSlider').node().value;
+
+   d3.select('#distLabel').text(dist);
+   d3.select('#sizeLabel').text(size);
+
+   eps = dist;
+   minimumSize = size;
+   resetData();
+   dbscan();
+   markCluster();
+}
+
+function resetData()    {
+   clusters = [];
+
+   d3.selectAll('.point').style('fill', '#DDD')
+   dataPoints.forEach(function(p) {
+      p.isVisited = false;
+      p.isClustered = false;
+      delete p['clusterIndex'];
+   });
+}
+
+
+function markCluster() {
+   clusters.forEach(function(cluster, clusterIndex) {
+      cluster.forEach(function(p) {
+         p.clusterIndex = clusterIndex;
+      });
+   });
+
+
+   var inCluster = vis.selectAll('.point').filter(function(d) {
+      return d.hasOwnProperty('clusterIndex');
+   });
+
+   inCluster.transition().duration(100)
+     .style('fill', function(d) {
+      return colourScale(d.clusterIndex);
+     })
+     .style('opacity', 0.8);
+
+
+   // Draw them summary bars
+   d3.select('#summary').selectAll('*').remove();
+
+   var summary = d3.select('#summary').attr('height', 450)
+     .append('g').attr('transform', 'translate(0, 10)');
+
+   var barH = 18;
+
+   summary.append('rect')
+     .attr('x', 2)
+     .attr('y', 0)
+     .attr('height', clusters.length * (barH + 1)  + 10)
+     .attr('width', 2)
+     .style('fill', '#aaa');
+
+   var bars = summary.selectAll('.bar')
+     .data(clusters)
+     .enter()
+     .append('rect')
+     .classed('bar', true)
+     .attr('x', 5)
+     .attr('y', function(d, i) { return 3 + i*(barH+1); })
+     .attr('width', 1)
+     .attr('height', barH)
+     .style('fill', function(d, i) {
+        return colourScale(i);
+     });
+
+   bars.transition().duration(100).attr('width', function(d) { return d.length * 2.0; });
+
+   bars.on('mouseover', function(d, i) {
+      d3.select(this).style('stroke', '#555');
+
+      console.log('over ', i);
+      var cidx = i;
+      var lineage = _.filter(lineages, function(d) { return d.index === cidx; });
+      var dupe = {};
+
+      lineage.forEach(function(level) {
+         var point = level.start;
+         dupe[point.id] = 1;
+
+         var children = _.filter(level.children, function(c) {
+            return c.clusterIndex === cidx && dupe.hasOwnProperty(c.id) === false;
+         });
+
+         children.forEach(function(c) {
+            dupe[c.id] = 1;
+            console.log(point.clusterIndex + ' -> ' + c.clusterIndex);
+            vis.append('path').classed('lineage', true).attr('d', _line(point.x, point.y, c.x, c.y)).attr('stroke', '#555');
+         });
+      });
+
+   });
+
+   bars.on('mouseout', function(d, i) {
+      d3.select(this).style('stroke', 'none');
+      vis.selectAll('.lineage').remove();
+   });
+}
+
+
+function dbscan() {
+   lineageIndex = 0;
+   dataPoints.forEach(function(p, i) {
+      if (p.isVisited === true) return;
+      p.isVisited = true;
+
+      var neighbours = _neighbours(p);
+
+      if (neighbours.length >= minimumSize) {
+         var newCluster = [];
+         expandCluster(p, neighbours, newCluster);
+         clusters.push(newCluster);
+         lineageIndex++;
+      }
+
+   });
+}
+
+function expandCluster(point, neighbours, c) {
+   c.push(point);
+
+   lineages.push({
+      index: lineageIndex,
+      start: point,
+      children: neighbours
+   });
+
+   for (var i=0; i < neighbours.length; i++) {
+      var p = neighbours[i];
+      if (p.isVisited === false) {
+         p.isVisited = true;
+         var neighboursPrime = _neighbours(p);
+         if (neighboursPrime.length >= minimumSize) {
+            neighbours = neighbours.concat(neighboursPrime);
+
+            lineages.push({
+               index: lineageIndex,
+               start: p,
+               children: neighboursPrime
+            });
+
+         }
+      }
+      if (p.isClustered === false) {
+         p.isClustered = true;
+         c.push(p);
+      }
+   }
+}
+
+/* Helper function for line segment */
+function _line(x1, y1, x2, y2) {
+   return 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2;
+}
+
+/* Helper distance function */
+function _dist(p1, p2) {
+   return Math.sqrt( (p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y));
+}
+
+
+/* Get the neighbouring points in range - including self */
+function _neighbours(point) {
+   var result = [];
+   dataPoints.forEach(function(p) {
+      if (_dist(p, point) < eps) {
+         result.push(p);
+      }
+   })
+   return result;
+}
+
+
+function initPoints() {
+   var padding = 10;
+
+   for (var i=0; i < numPoints; i++) {
+      dataPoints.push({
+         id: i,
+         x: padding + Math.random()* (w - 2*padding),
+         y: padding + Math.random()* (h - 2*padding),
+         isVisited: false,
+         isClustered: false
+      });
+   }
+}
+
+
+function initCanvas() {
+   // vis = d3.select('#canvas').attr('width', w).attr('height', h).append('g');
+   vis = d3.select('#canvas').attr('viewBox', '0 0 ' + w + ' ' + h)
+     .attr('preserveAspectRatio', 'xMidYMid')
+     .append('g');
+
+   vis.append('rect').attr('width', w).attr('height', h).style('fill', '#EEE');
+
+   vis.selectAll('.point')
+     .data(dataPoints)
+     .enter()
+     .append('circle')
+     .classed('point', true)
+     .attr({
+        cx: function(d) { return d.x; },
+        cy: function(d) { return d.y; },
+        r: 4
+     })
+     .style({
+        opacity: 0.5,
+        'stoke-opacity': 0.75,
+        fill: '#FFF',
+        stroke: '#444'
+     })
+     .on('click', function(d) {
+        var test = _.find(lineages, function (x) {
+           return x.start.id = d.id;
+        });
+        console.log(test);
+     });
+
+}
+
+</script>
+</html>
