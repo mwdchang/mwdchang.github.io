@@ -1,235 +1,129 @@
 <!DOCTYPE html>
-<html data-ng-app="GithubPage">
-<head >
-<title>Daniel Chang - Visualization/Graphics Playground</title>
-<meta charset="utf-8"></meta>
-<meta name="keywords" content="visualization, graphics, interaction, design, web, computer science, daniel chang, meng-wei chang, technology"/>
-<meta name="description" content="Data visualization, computer graphics, interesting widgets and other tinkering/experiments."/>
-<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.js"></script>
-<script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-<script src="lib/aclock.js"></script>
+<html>
+<head lang="en">
+  <title>Daniel Chang - Visualization/Graphics Playground</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css"></link>
-<link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css"></link>
-<link rel="stylesheet" type="text/css" href="style.css"></link>
+  <meta name="keywords" content="visualization, ai, machine learning, neural networks, graphics, interaction, design, web, computer science, daniel chang, meng-wei chang, technology"/>
+  <meta name="description" content="Visualization, graphics, artificial intelligence and other tinkering/experiments."/>
+
+  <!-- External css goes in here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.css" />
+  <link rel="stylesheet" type="text/css" href="style.css"></link>
+
+  <!-- External javascripts goes in here -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+  <script src="data.js"></script>
+
 </head>
+<bodyi id="vue-app">
+  <div class="container" style="font-size:150%">
+    <a href="http://ca.linkedin.com/in/mengweichang">
+      <i class="fa fa-linkedin-square"></i>
+    </a>
+    <a href="https://github.com/mwdchang">
+      <i class="fa fa-github-square"></i>
+    </a>
+    <a href="https://www.facebook.com/mengwei.d.chang">
+      <i class="fa fa-facebook-square"></i>
+    </a>
+    <a href="https://plus.google.com/photos/114361941566420058566/albums?banner=pwa">
+      <i class="fa fa-google-plus-square"></i>
+    </a>
+  </div>
 
-<body data-ng-controller="MainController" style="overflow:hidden">
-<base href="/"/>
-<div class="row page-main">
-    <div class="small-3 columns">
-        <nav>
-        <ul class="side-nav">
-            <li class="{{currentState === 'home'? 'active': ''}}">
-                <a data-ui-sref="home"><strong>Home</strong><br><small>Home</small></a>
-            </li>
-            <li class="{{currentState === 'visualizations'? 'active': ''}}">
-                <a data-ui-sref="visualizations"><strong>Visualization Demos</strong><br><small>Proof of concepts</small></a>
-            </li>
-            <li class="{{currentState === 'misc'? 'active': ''}}">
-                <a data-ui-sref="misc"><strong>Miscellaneou/Util</strong><br><small>Misc and Tools</small></a>
-            </li>
-            <li class="{{currentState === 'graphics'? 'active': ''}}">
-                <a data-ui-sref="graphics"><strong>Graphics Demos</strong><br><small>Pretty Little Things...</small></a>
-            </li>
-        </ul>
-        </nav>
-        <br>
-        <br>
-        <div>Clock</div>
-        <small><a href="https://github.com/mwdchang/VisDemos/tree/master/arc-clock" target="_blank">Customizable polar clocks</a></small>
-        <div style="margin:0.5rem">
-            <div id="clock1" style="width:7rem; height: 7rem; display:inline-block"></div>
-            <div id="clock2" style="width:7rem; height: 7rem; display:inline-block"></div>
-            <div id="clock3" style="width:7rem; height: 7rem; display:inline-block"></div>
-            <div id="clock4" style="width:7rem; height: 7rem; display:inline-block"></div>
+  <div class="container">
+     Hi, I am Daniel Chang. I am a research engineer with keen interests in Data Visualization, HCI and Machine Learning.
+     This page showcases some of my projects and tinkerings. Always up for collaboration on interesting ideas, drop me a
+     line at <strong>mwdchang@gmail.com</strong>.
+     <hr/>
+  </div>
+
+  <div class="container">
+    Recent projects
+    <div id="strip-recent" class="slick-container">
+      <a class="cell overlay" href="" target="_blank">
+        <img src="" width="100%"></img>
+        <div class="cell-desc">
+          Nebulis validator
+          <br>
+          <small>Validates Nebulis model transform</small>
         </div>
-        <div style="line-height:0.75rem">
-           <small>This page is built with Foundation, angularJS, D3 and some other stuff thrown in for good measure.</small>
+      </a>
+      <a class="cell overlay" href="" target="_blank">
+        <img src="" width="100%"></img>
+        <div class="cell-desc">
+          Stckr
+          <br>
+          <small>Stacking library in D3</small>
         </div>
+      </a>
     </div>
-    <div class="small-9 columns" style="overflow-y:scroll; max-height:85%">
-        <div data-ui-view></div>
+  </div>
+
+  <div class="container">
+    Neural networks, data mining and other ML-related goodies
+    <div id="strip-ml" class="slick-container">
+      <div class="cell overlay">1</div>
+      <div class="cell overlay">2</div>
+      <div class="cell overlay">3</div>
+      <div class="cell overlay">4</div>
+      <div class="cell overlay">5</div>
     </div>
-</div>
+  </div>
+
+  <div class="container">
+    Data visualization and Graphics
+    <div id="strip-viz" class="slick-container">
+      <a class="cell overlay">1</a>
+      <a class="cell overlay">2</a>
+    </div>
+  </div>
+
+  <div class="container">
+    Misc tinkerings, older stuff
+    <div id="strip-misc" class="slick-container">
+      <slick-cell k="nebulis"></slick-cell>
+      <slick-cell k="nebulis"></slick-cell>
+      <slick-cell k="nebulis"></slick-cell>
+      <slick-cell k="nebulis"></slick-cell>
+    </div>
+  </div>
+
 </body>
-<script>
-var app = angular.module('GithubPage', ['ui.router']);
-
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-  // $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise('/');
-
-  $stateProvider.state('home', {
-    url: '/',
-    templateUrl: 'home.html'
-  })
-  .state('visualizations', {
-    url: '/visualizations',
-    templateUrl: 'visualizations.html'
-  })
-  .state('graphics', {
-    url: '/graphics',
-    templateUrl: 'graphics.html'
-  })
-  .state('misc', {
-    url: '/misc',
-    templateUrl: 'misc.html'
-  });
-});
-
-app.controller('MainController', function($rootScope, $scope) {
-   var gallery = [
-     {
-        img: '/images/g_cssball.png',
-        desc: '3D Sphere with CSS',
-        url: 'https://github.com/mwdchang/Demos/tree/master/cssBall'
-     },
-     {
-        img: '/images/g_circles.png',
-        desc: 'Shader demo',
-        url: 'https://github.com/mwdchang/Demos/tree/master/circles'
-     },
-     {
-        img: '/images/g_quadtree.png',
-        desc: 'Quad tree ... everyone needs a quad tree',
-        url: 'https://github.com/mwdchang/VisDemos/tree/master/quadTree'
-     },
-     {
-        img: '/images/g_fractal.png',
-        desc: 'Fractal with webGL Shaders',
-        url: 'https://github.com/mwdchang/Demos/tree/master/fractal'
-     },
-     {
-        img: '/images/g_noise.png',
-        desc: 'Perlin noise functions',
-        url: 'https://github.com/mwdchang/Demos/tree/master/noiseGen'
-     },
-     {
-        img: '/images/g_shader.png',
-        desc: 'Procedurally generated textures',
-        url: 'https://github.com/mwdchang/Demos/tree/master/shaderThreeJS'
-     },
-     {
-        img: '/images/g_clock.png',
-        desc: 'Abstract clock with D3',
-        url: 'https://github.com/mwdchang/VisDemos/tree/master/clock'
-     },
-     {
-        img: '/images/g_touchpong.jpg',
-        desc: 'My multi touch surface pong game',
-        url: 'https://github.com/mwdchang/MPong'
-     },
-     {
-        img: '/images/g_arcs.png',
-        desc: 'Arc diagram',
-        url: 'https://github.com/mwdchang/VisDemos/tree/master/arcs'
-     },
-     {
-        img: '/images/g_polaroid.png',
-        desc: 'Image processing and filters',
-        url: 'https://github.com/mwdchang/Demos/tree/master/polaroidComposite'
-     },
-     {
-        img: '/images/g_orbit.png',
-        desc: 'Circular orbits with Pixi',
-        url: 'https://github.com/mwdchang/Demos/tree/master/pixiTest'
-     },
-     {
-        img: '/images/g_thesis.png',
-        desc: 'VehicleVis: combinging text visualiation with 3D graphcis',
-        url: 'https://github.com/mwdchang/VehicleVis'
-     },
-     {
-        img: '/images/g_ribbon.png',
-        desc: 'OpenGL ribbon effects',
-        url: 'https://github.com/mwdchang/JOGLKit'
-     },
-     {
-        img: '/images/g_grid.png',
-        desc: 'Portable grids (reduce grid) experiment',
-        url: 'http://vialab.science.uoit.ca/mwdchang/projects/grid/testGrid.html'
-     },
-     {
-        img: '/images/g_lens.png',
-        desc: 'Magic lens technique',
-        url: 'https://github.com/mwdchang/VisDemos/tree/master/lens'
-     },
-     {
-        img: '/images/g_fisheye.png',
-        desc: 'Fisheye Shader',
-        url: 'https://github.com/mwdchang/Demos/tree/master/fisheye'
-     }
-   ];
-
-   $scope.gallery = _.shuffle(gallery);
-
-   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-     $scope.currentState = toState.name;
-     if (window.clock) {
-       clearInterval(clock)
-     }
-     console.log('toState', toState);
-   })
-});
-</script>
 
 <script>
-/* Clocks clocks clocks ... */
-var c1 = new ArcClock();
-c1.render('#clock1');
+Vue.component('my-component', {
+  props: ['k'],
+  template: '<div>A custom component!!! {{ k }}</div>'
+})
 
-var c2 = new ArcClock({
-  hourStyle: 'TICK',
-  hourInner: 110,
-  hourOuter: 180,
-  hourColour: '#BBB',
+Vue.component('slick-cell', {
+  props: ['k'],
+  data: function() {
+    return SITE_DATA[this.k]
+  },
+  template: '<a class="cell overlay" href="" target="_blank">{{ title }}</a>'
+})
 
-  minuteStyle: 'TICK',
-  minuteInner: 110,
-  minuteOuter: 220,
-  minuteColour: '#CCC',
+new Vue({ el: '#vue-app' })
 
-  secondInner: 110,
-  secondOuter: 290,
-  secondStyle: 'TICK',
-  secondColour: '#DDD',
+const slickOptions = {
+  slidesToShow: 4,
+  slidesToScroll: 2,
+  dots: true
+}
 
-  showWave: false
-});
-c2.render('#clock2');
-
-var c3 = new ArcClock({
-   hourStyle: 'ARC',
-   hourColour: '#F80',
-   minuteStyle: 'ARC',
-   minuteColour: '#FA0',
-   secondStyle: 'ARC',
-   secondColour: '#FD0',
-   waves: 5,
-   waveInner: 20,
-   waveOuter: 50,
-   waveColour: '#E30',
-   showCenter: false
-});
-c3.render('#clock3');
-
-var c4 = new ArcClock({
-  hourStyle: 'ARC',
-  hourColour: '#2A0',
-  minuteColour: '#2C4',
-  miuteStyle: 'TICK',
-
-  showCenter: false,
-  showWave: false,
-  showSecond: false
-});
-c4.render('#clock4');
+$('#strip-recent').slick(slickOptions)
+$('#strip-ml').slick(slickOptions)
+$('#strip-viz').slick(slickOptions)
+$('#strip-misc').slick(slickOptions)
 
 </script>
-
 </html>
