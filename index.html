@@ -39,7 +39,7 @@
   </div>
 
   <div class="container">
-     Hi, I am Daniel Chang. I am a research engineer with keen interests in Data Visualization, HCI and Machine Learning.
+     Hi, I am Daniel Chang. I am a senior research engineer with keen interests in Data Visualization, HCI and Machine Learning.
      This page showcases some of my projects and tinkerings. Always up for collaboration on interesting ideas, drop me a
      line at <strong>mwdchang@gmail.com</strong>.
      <hr/>
@@ -48,41 +48,26 @@
   <div class="container">
     Recent projects
     <div id="strip-recent" class="slick-container">
-      <a class="cell overlay" href="" target="_blank">
-        <img src="" width="100%"></img>
-        <div class="cell-desc">
-          Nebulis validator
-          <br>
-          <small>Validates Nebulis model transform</small>
-        </div>
-      </a>
-      <a class="cell overlay" href="" target="_blank">
-        <img src="" width="100%"></img>
-        <div class="cell-desc">
-          Stckr
-          <br>
-          <small>Stacking library in D3</small>
-        </div>
-      </a>
+      <slick-cell k="nebulis"></slick-cell>
+      <slick-cell k="stckr"></slick-cell>
     </div>
   </div>
 
   <div class="container">
     Neural networks, data mining and other ML-related goodies
     <div id="strip-ml" class="slick-container">
-      <div class="cell overlay">1</div>
-      <div class="cell overlay">2</div>
-      <div class="cell overlay">3</div>
-      <div class="cell overlay">4</div>
-      <div class="cell overlay">5</div>
+      <slick-cell k=""></slick-cell>
+      <slick-cell k=""></slick-cell>
+      <slick-cell k=""></slick-cell>
     </div>
   </div>
 
   <div class="container">
     Data visualization and Graphics
     <div id="strip-viz" class="slick-container">
-      <a class="cell overlay">1</a>
-      <a class="cell overlay">2</a>
+      <slick-cell k=""></slick-cell>
+      <slick-cell k=""></slick-cell>
+      <slick-cell k=""></slick-cell>
     </div>
   </div>
 
@@ -90,26 +75,28 @@
     Misc tinkerings, older stuff
     <div id="strip-misc" class="slick-container">
       <slick-cell k="nebulis"></slick-cell>
-      <slick-cell k="nebulis"></slick-cell>
-      <slick-cell k="nebulis"></slick-cell>
-      <slick-cell k="nebulis"></slick-cell>
+      <slick-cell k=""></slick-cell>
+      <slick-cell k=""></slick-cell>
     </div>
   </div>
   <div class="container"><small>Made haphazardly with Vue2, Boostrap, jQuery and D3</small></div>
 </body>
 
 <script>
-Vue.component('my-component', {
-  props: ['k'],
-  template: '<div>A custom component!!! {{ k }}</div>'
-})
-
 Vue.component('slick-cell', {
   props: ['k'],
   data: function() {
-    return SITE_DATA[this.k]
+    return SITE_DATA[this.k] || {
+      title: '???',
+      desc: 'Coming soon...',
+      img: '',
+      url: ''
+    }
   },
-  template: '<a class="cell overlay" href="" target="_blank">{{ title }}</a>'
+  template: '<a class="cell overlay" :href.bind="url" target="_blank">' +
+    '<img :src.bind="img" width="100%"></img>' +
+    '<div class="cell-desc"> {{ title }} <br><small>{{ desc }}</small></div>' +
+    '</a>'
 })
 
 new Vue({ el: '#vue-app' })
