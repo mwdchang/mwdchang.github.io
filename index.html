@@ -19,7 +19,10 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+
   <script src="data.js"></script>
+  <script src="lib/aclock.js"></script>
 
 </head>
 <bodyi id="vue-app">
@@ -36,11 +39,12 @@
            <a href="https://plus.google.com/photos/114361941566420058566/albums?banner=pwa"> <i class="fa fa-google-plus-square"></i> </a>
          </div>
        </div>
-       <div style="margin-left: 1rem">
+       <div style="margin-left: 1rem; width: 60%">
          Hi, I am Daniel Chang. I am a senior research engineer with keen interests in Data Visualization, HCI and Machine Learning.
          This page showcases some of my projects and tinkerings. Always up for collaboration on interesting ideas, drop me a
          line at <strong>mwdchang@gmail.com</strong>.
        </div>
+       <div id="clock3" style="display:block; width: 160px; height: 160px"></div>
      </div>
      <hr/>
   </div>
@@ -111,6 +115,43 @@ $('#strip-recent').slick(slickOptions)
 $('#strip-ml').slick(slickOptions)
 $('#strip-viz').slick(slickOptions)
 $('#strip-misc').slick(slickOptions)
+
+let c3 = new ArcClock({
+  /*
+   hourStyle: 'ARC',
+   hourColour: '#F80',
+   minuteStyle: 'ARC',
+   minuteColour: '#FA0',
+   secondStyle: 'ARC',
+   secondColour: '#FD0',
+   waves: 5,
+   waveInner: 20,
+   waveOuter: 50,
+   waveColour: '#E30',
+   showCenter: false
+   */
+  /*
+  hourStyle: 'TICK',
+  hourInner: 110,
+  hourOuter: 180,
+  hourColour: '#BBB',
+
+  minuteStyle: 'TICK',
+  minuteInner: 110,
+  minuteOuter: 220,
+  minuteColour: '#CCC',
+
+  secondInner: 110,
+  secondOuter: 290,
+  secondStyle: 'TICK',
+  secondColour: '#DDD',
+
+  showWave: false
+  */
+   showCenter: false
+});
+c3.render('#clock3');
+
 
 </script>
 </html>
