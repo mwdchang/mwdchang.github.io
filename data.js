@@ -45,7 +45,7 @@ const SITE_DATA = {
   },
   dbscan: {
     title: 'DBSCAN',
-    desc: 'DBSCAN algorithm and visualization',
+    desc: 'DBSCAN clustering algorithm and visualization (neighbourhood growth).',
     img: 'images/dbscan.png',
     url: 'https://github.com/mwdchang/dbscanVis'
   },
@@ -54,6 +54,12 @@ const SITE_DATA = {
     desc: 'Using arc diagram in place of venn diagrams',
     img: 'images/g_arcs.png',
     url: 'https://github.com/mwdchang/VisDemos/tree/master/arcs'
+  },
+  kmeans: {
+    title: 'K-means',
+    desc: 'K-means clustering algorithm and iteration (center seeker) visualization',
+    img: 'images/kmeans.png',
+    url: 'https://github.com/mwdchang/kmeansVis'
   }
 
 }
