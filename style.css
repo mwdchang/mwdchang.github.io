@@ -53,15 +53,15 @@ small {
 }
 
 .cell img {
-    -webkit-transition: all 0.2s linear;
-    transition: all 0.2s linear;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
 }
 
 .cell:hover img {
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    -webkit-transition: all 0.7s ease 0.1s;
+    transition: all 0.7s ease 0.1s;
 }
 
 .cell-desc {
