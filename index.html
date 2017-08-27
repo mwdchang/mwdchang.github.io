@@ -20,6 +20,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+  <script src="d3.min.js"></script>
 
   <script src="data.js"></script>
   <script src="lib/aclock.js"></script>
@@ -40,7 +41,7 @@
          </div>
        </div>
        <div style="margin-left: 1rem; width: 60%">
-         Hi, I am Daniel Chang. I am a senior research engineer with keen interests in Data Visualization, HCI and Machine Learning.
+         Hi, I am Daniel Chang. I am a senior research engineer. I am interested in Data Visualization, HCI and Machine Learning.
          This page showcases some of my projects and tinkerings. Always up for collaboration on interesting ideas, drop me a
          line at <strong>mwdchang@gmail.com</strong>.
        </div>
@@ -63,7 +64,7 @@
     <div id="strip-ml" class="slick-container">
       <slick-cell k="dbscan"></slick-cell>
       <slick-cell k="kmeans"></slick-cell>
-      <slick-cell k=""></slick-cell>
+      <slick-cell k="som"></slick-cell>
     </div>
   </div>
 
@@ -73,6 +74,8 @@
       <slick-cell k="arc"></slick-cell>
       <slick-cell k="polaroid"></slick-cell>
       <slick-cell k="fisheye"></slick-cell>
+      <slick-cell k="perlin"></slick-cell>
+      <slick-cell k="shader"></slick-cell>
     </div>
   </div>
 
@@ -100,7 +103,7 @@ Vue.component('slick-cell', {
   },
   template: '<a class="cell overlay" :href.bind="url" target="_blank">' +
     '<img :src.bind="img" width="100%"></img>' +
-    '<div class="cell-desc"> {{ title }} <br><small>{{ desc }}</small></div>' +
+    '<div class="cell-desc"><div class="cell-title"> {{ title }} </div><small>{{ desc }}</small></div>' +
     '</a>'
 })
 

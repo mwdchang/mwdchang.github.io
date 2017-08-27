@@ -60,6 +60,24 @@ const SITE_DATA = {
     desc: 'K-means clustering algorithm and iteration (center seeker) visualization',
     img: 'images/kmeans.png',
     url: 'https://github.com/mwdchang/kmeansVis'
-  }
+  },
+  som: {
+    title: 'SOM',
+    desc: 'Self-organizing map',
+    img: 'images/som.png',
+    url: 'https://github.com/mwdchang/somVis'
+  },
+  perlin: {
+    title: 'Perlin noise',
+    desc: 'Generating 2D textures with Perlin noise superimposed onto random functions',
+    img: 'images/g_noise.png',
+    url: 'https://github.com/mwdchang/Demos/tree/master/noiseGen'
+  },
+  shader: {
+    title: 'WebGL Shaders',
+    desc: 'Testing Three.js shaders via procedurally generated textures',
+    img: 'images/g_shader.png',
+    url: 'https://github.com/mwdchang/Demos/tree/master/shaderThreeJS'
+  },
 
 }
