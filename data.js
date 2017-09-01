@@ -83,7 +83,7 @@ const SITE_DATA = {
     title: 'Fountain code - LT',
     desc: 'Fountain code encoder/decoder using Luby transformations.',
     img: 'images/luby.png',
-    url: 'https://github.com/mwdchang/fountain-code'
+    url: 'https://mwdchang.github.io/fountain-code/'
   }
 
 }
