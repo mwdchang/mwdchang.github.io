@@ -65,7 +65,7 @@ const SITE_DATA = {
     title: 'SOM',
     desc: 'Self-organizing map',
     img: 'images/som.png',
-    url: 'https://github.com/mwdchang/somVis'
+    url: 'https://mwdchang.github.io/somVis/'
   },
   perlin: {
     title: 'Perlin noise',
@@ -79,5 +79,11 @@ const SITE_DATA = {
     img: 'images/g_shader.png',
     url: 'https://github.com/mwdchang/Demos/tree/master/shaderThreeJS'
   },
+  luby: {
+    title: 'Fountain code - LT',
+    desc: 'Fountain code encoder/decoder using Luby transformations.',
+    img: 'images/luby.png',
+    url: 'https://github.com/mwdchang/fountain-code'
+  }
 
 }
