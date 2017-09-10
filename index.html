@@ -20,7 +20,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
 
   <script src="data.js"></script>
   <script src="lib/aclock.js"></script>
@@ -58,6 +59,7 @@
       <slick-cell k="stckr"></slick-cell>
     </div>
   </div>
+  <br>
 
   <div class="container">
     NN, data mining and other ML goodies <i class="fa fa-caret-right"></i> 3 items
@@ -67,6 +69,7 @@
       <slick-cell k="som"></slick-cell>
     </div>
   </div>
+  <br>
 
   <div class="container">
     Data visualization and Graphics <i class="fa fa-caret-right"></i> 5 items
@@ -78,6 +81,7 @@
       <slick-cell k="shader"></slick-cell>
     </div>
   </div>
+  <br>
 
   <div class="container">
     Misc tinkerings, older stuff
@@ -87,6 +91,8 @@
       <slick-cell k="grid"></slick-cell>
     </div>
   </div>
+  <br>
+
   <div class="container"><small><em>This page is made haphazardly with Vue2, Boostrap, jQuery and D3. Stirred together until no JS errors :) </em></small></div>
 </body>
 
@@ -121,7 +127,7 @@ $('#strip-viz').slick(slickOptions)
 $('#strip-misc').slick(slickOptions)
 
 let c3 = new ArcClock({
-   showCenter: false
+   showCenter: true
 });
 c3.render('#clock3');
 

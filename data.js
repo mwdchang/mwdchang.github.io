@@ -3,7 +3,7 @@ const GITHUB_ROOT = 'https://github.com/mwdchang/'
 const SITE_DATA = {
   nebulis: {
      title: 'Nebulis validator',
-     desc: 'Edit and validates Nebulis transform models. ',
+     desc: 'Edit and validate Nebulis transform models. ',
      img: 'images/g_nebulis.png',
      url: GITHUB_ROOT + 'schema-editor'
   },
@@ -41,7 +41,7 @@ const SITE_DATA = {
     title: 'Clock',
     desc: 'Abstract and artistic clocks written in D3',
     img: 'images/g_clock.png',
-    url: 'https://github.com/mwdchang/VisDemos/tree/master/clock'
+    url: 'https://github.com/mwdchang/arc-clock'
   },
   dbscan: {
     title: 'DBSCAN',

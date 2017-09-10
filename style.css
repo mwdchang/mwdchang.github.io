@@ -14,12 +14,12 @@ small {
 
 .cell {
   height: 150px;
-  border: 1px solid #DCDCDC;
+  border: 2px solid #DADADA;
   border-radius: 8px;
   display: flex !important;
   justify-content: center;
   align-items: center;
-  margin: 2px;
+  margin: 5px;
   overflow: hidden;
   line-height: 125%;
 }
