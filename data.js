@@ -84,6 +84,12 @@ const SITE_DATA = {
     desc: 'Fountain code encoder/decoder using Luby transformations.',
     img: 'images/luby.png',
     url: 'https://mwdchang.github.io/fountain-code/'
+  },
+  'tensor-mlb': {
+    title: 'Batter classifier',
+    desc: 'Tensorflow classification for MLB batters based on career statistics',
+    img: 'images/tensor-mlb.png',
+    url: 'https://github.com/mwdchang/tensor-mlb-batting'
   }
 
 }
