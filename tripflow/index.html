@@ -98,16 +98,26 @@
     </div>
 
 
-    <table class="table" v-if="view==='destinations'">
-      <tbody>
-        <tr v-for="(place,idx) in trip.places">
-          <td>{{idx+1}}</td>
-          <td>{{place.name}}</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <div v-if="view==='destinations'" style="padding:0.5rem; max-height:20rem; overflow-y: scroll">
+      <table class="table" v-if="view==='destinations'">
+        <tbody>
+          <tr v-for="(place,idx) in trip.places">
+            <td>{{idx+1}}</td>
+            <td>
+              {{place.name}}
+            </td>
+            <td>
+              <div v-if="place.photos">
+                <img v-bind:src="place.photos[0].getUrl({maxHeight:40})" v-if="place.photos[0]">
+                <img v-bind:src="place.photos[1].getUrl({maxHeight:40})" v-if="place.photos[1]">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
 
   <div id="googleMap" style="width:50%;height:400px" class="todo">
     Map goes here
@@ -175,8 +185,10 @@
           <div style="padding-left:1rem">
             <div v-for="c in searchCandidates" class="destination-card" v-on:click="select(c)">
               {{c.formatted_address}}<br>
-              <img v-bind:src="c.photos[0].getUrl({maxHeight:40})">
-              <img v-bind:src="c.photos[1].getUrl({maxHeight:40})">
+              <div v-if="c.photos">
+                <img v-bind:src="c.photos[0].getUrl({maxHeight:40})" v-if="c.photos[0]">
+                <img v-bind:src="c.photos[1].getUrl({maxHeight:40})" v-if="c.photos[1]">
+              </div>
             </div>
           </div>
           <div style="padding-left:1rem">
@@ -303,7 +315,7 @@ function loadTrip() {
   
     let promises = [];
     trip.places.forEach(p => {
-      promises.push( getDetailsWrapper(p))
+      promises.push(getDetailsWrapper(p))
     })
     Promise.all(promises).then(values => {
       trip.places = values
@@ -528,11 +540,11 @@ let vueDestination = new Vue({
         })
 
         Promise.all(promises).then( values => {
+          console.log('debug', values)
           this.searchCandidates = []
           values.forEach( v => {
             if (v === null) return
             this.searchCandidates.push(v)
-            console.log('v', v.photos[0].getUrl({maxWidth:100, maxHeight:100}))
           })
         })
       })
