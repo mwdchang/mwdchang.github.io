@@ -1,0 +1,41 @@
+body {
+  margin: 3px;
+  font-size: 12px;
+}
+
+select {
+  height: 1.5rem;
+  border-radius:0 !important;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo {
+  border: 1px solid #ccc;
+  background: #EEE;
+}
+
+.modal-header, .modal-footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.destination-card {
+  margin: 1px;
+  padding: 4px 8px;
+  border: 1px solid #DDD;
+  border-radius: 2px;
+}
+
+.destination-card:hover {
+  background: #69C;
+  color: #EEE;
+}

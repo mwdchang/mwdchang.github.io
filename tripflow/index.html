@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trip Flow</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"</script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.0/lodash.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+
+  <!-- Google APIs -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIRqVwNwJtPVQ6RlUBn1wEPqnLRolRLIY&libraries=places"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+
+
+
+  <!-- Local -->
+  <!--
+  <link rel="stylesheet" href="bootstrap.min.css"> 
+  <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="lodash.min.js"></script>
+  <script type="text/javascript" src="d3.min.js"></script>
+  <script type="text/javascript" src="vue.min.js"></script>
+  -->
+
+  <link href="styles.css" rel="stylesheet">
+  <script type="text/javascript" src="models.js"></script>
+  <script type="text/javascript" src="db.js"></script>
+  <script type="text/javascript" src="dummy.js"></script>
+
+</head>
+<body>
+<div class="flex-row" style="padding:0.25rem; justify-content: space-between; background:none">
+  <h5>Trip Flow </h5>
+  <div background>
+     <button class="btn btn-sm btn-info" onclick="showDestinationDialog()">New Destination</button>
+     <button class="btn btn-sm btn-info" onclick="showPlanDialog()">New Plan</button>
+     <button class="btn btn-sm btn-info" onclick="showNewTripDialog()">New Trip</button>
+     <button class="btn btn-sm btn-info" onclick="showLoadTripDialog()">Load Trip</button>
+     <button class="btn btn-sm btn-primary">Sign in </button>
+  </div>
+</div>
+
+
+<div class="flex-row"> 
+  <div style="width:50%; height:400px" id="summary">
+    <ul class="nav nav-tabs" >
+      <li class="nav-item" v-on:click="switchTo('summary')">
+        <a v-bind:class="{active: view ==='summary'}" class="nav-link" href="#">Summary</a>
+      </li>
+      <li class="nav-item" v-on:click="switchTo('plans')">
+        <a class="nav-link" href="#">Plans </a>
+      </li>
+      <li class="nav-item" v-on:click="switchTo('destinations')">
+        <a v-bind:class="{active: view==='destinations'}" class="nav-link" href="#">Destinations</a>
+      </li>
+    </ul>
+  
+    <div v-if="view==='summary'" style="padding:0.5rem">
+      <table class="table">
+        <tbody>
+          <tr><td colspan="2">{{trip.name}}</td></tr>
+          <tr><td>Total destinations</td><td>{{trip.places.length}}</tr>
+          <tr><td>Destinations used</td><td></td></tr>
+          <tr><td>Number of plans</td><td>{{trip.plans.length}}</td></tr>
+          <tr><td>Last updated</td><td></td></tr>
+          <tr><td>Last updater</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div v-if="view==='plans'" style="padding:0.5rem">
+      <div style="display:flex; flex-direction:row">
+        <div style="max-height: 15rem; overflow-y: scroll">
+          <div v-for="plan of trip.plans" v-on:click="show(plan)" style="padding:0.25rem; border:1px solid #ddd; border-radius: 3px">
+            {{plan.name}} <br>
+            <em>{{plan.itineraries.length}} places</em>
+            <br>
+          </div>
+        </div> 
+
+        <div style="margin-left: 1rem; padding-left: 1rem;  border-left: 1px solid #ddd; flex:1" v-if="currentPlan">
+          <button class="btn btn-sm btn-primary">Edit</button>
+          <button class="btn btn-sm btn-danger">Delete</button>
+          <table class="table">
+            <tbody>
+              <tr v-for="it of currentPlan.itineraries">
+                <td>{{trip.findPlace(it.placeId).name}}</td>
+                <td>{{it.duration}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <table class="table" v-if="view==='destinations'">
+      <tbody>
+        <tr v-for="(place,idx) in trip.places">
+          <td>{{idx+1}}</td>
+          <td>{{place.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div id="googleMap" style="width:50%;height:400px" class="todo">
+    Map goes here
+  </div>
+</div>
+
+<div class="flex-row">
+  <div style="width:100%; min-height:5rem" class="todo">
+    Time graph goes in here...
+  </div>
+</div>
+
+<!-- Plan -->
+<div id="planModal" class="modal fade" style="opacity:0.9">
+  <div class="modal-dialog modal-lg" id="test">
+    <div class="modal-content">
+      <div class="modal-header"><strong>Add/Edit Plan</strong></div>
+      <div class="modal-body">
+        <div style="padding-left:1rem"> 
+          <input type="text" placeholder="Plan name" v-model="name">
+        </div>
+        <br>
+        <div style="display:flex; flex-direction: row">
+          <div style="padding-left:1rem; max-height:15rem; overflow-y:scroll; flex: 1; display:flex; flex-direction:row"> 
+            <div> 
+              <div v-for="(item, idx) in itineraries" v-if="itineraries.length > 0">
+                <div> 
+                  <button>-</button>
+                  <button v-on:click="addRow()">+</button>
+                  <select v-model="item.placeId">
+                    <option disabled value="">Pick Destination</option>
+                    <option v-for="d in getTripPlaces()" v-bind:value="d.place_id">{{d.formatted_address}}</option>
+                  </select>
+                  <input type="text" v-model="item.duration" size="6">
+                </div>
+              </div>
+            </div>
+            <div>
+              <div v-for="(travel, idx) in travels">
+                {{travel.from}} &gt; {{travel.to}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" v-on:click="save()">Save</button>
+        <button class="btn btn-primary btn-sm" v-on:click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Destination -->
+<div id="destinationModal" class="modal fade" style="opacity:0.9">
+  <div class="modal-dialog modal-lg"> 
+    <div class="modal-content">
+      <div class="modal-header"><strong>Add/Edit Destination</strong></div>
+      <div class="modal-body">
+        <div class="flex-row">
+          <div> 
+            <input type="text" placeholder="Search" v-model="searchStr"> 
+          </div>
+          <div style="padding-left:1rem">
+            <div v-for="c in searchCandidates" class="destination-card" v-on:click="select(c)">
+              {{c.formatted_address}}<br>
+              <img v-bind:src="c.photos[0].getUrl({maxHeight:40})">
+              <img v-bind:src="c.photos[1].getUrl({maxHeight:40})">
+            </div>
+          </div>
+          <div style="padding-left:1rem">
+            <textarea rows="5" cols="30" placeholder="Notes" v-model="notes"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" v-on:click="save()">Save</button>
+        <button class="btn btn-primary btn-sm" v-on:click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Trip -->
+<div id="newTrip" class="modal fade" style="opacity:0.9">
+  <div class="modal-dialog modal-lg"> 
+    <div class="modal-content">
+      <div class="modal-header">
+        <strong>Add Trip</strong>
+      </div>
+      <div class="modal-body">
+        <input type="text" v-model="name" placeholder="Trip name">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" v-on:click="save()">Save</button>
+        <button class="btn btn-primary btn-sm" v-on:click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Load trip -->
+<div id="loadTrip" class="modal fade" style="opacity:0.9">
+  <div class="modal-dialog modal-lg"> 
+    <div class="modal-content">
+      <div class="modal-header">
+        <strong>Load Trip</strong>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <tbody>
+            <tr v-for="trip of trips" style="cursor:pointer" v-on:click="load(trip)">
+              <td>{{trip}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" v-on:click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+
+function showPlanDialog() {
+  $('#planModal').modal('show')
+}
+
+function showDestinationDialog() {
+  $('#destinationModal').modal('show')
+}
+
+function showNewTripDialog() {
+  $('#newTrip').modal('show')
+}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Google API
+//
+// https://developers.google.com/maps/documentation/javascript/places-autocomplete
+////////////////////////////////////////////////////////////////////////////////
+const center = new google.maps.LatLng(51.0, 0.0)
+const map = new google.maps.Map(document.getElementById('googleMap'), {
+  center: center,
+  zoom: 5
+});
+
+
+const autocompleteService = new google.maps.places.AutocompleteService()
+const placeService = new google.maps.places.PlacesService(map);
+
+function getDetailsWrapper(place_id) {
+  return new Promise(function(resolve, reject) {
+    placeService.getDetails({placeId: place_id}, function(place, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        resolve(place)
+      } else {
+        reject(null)
+      }
+    })
+  })
+}
+
+
+  
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Main trip data
+////////////////////////////////////////////////////////////////////////////////
+let trip = new Trip()
+/*
+trip.loadJSON(dummy)
+writeDB('/Trip/test', trip.toObj()).then(()=> {
+  console.log('testing...')
+})
+*/
+
+// FIXME: Test
+let TEST_KEY = '/Trip/test';
+function loadTrip() {
+  readDB(TEST_KEY).then( d => {
+    data = d.val() || {}
+    trip.loadJSON(data)
+  
+    let promises = [];
+    trip.places.forEach(p => {
+      promises.push( getDetailsWrapper(p))
+    })
+    Promise.all(promises).then(values => {
+      trip.places = values
+    })
+  })
+}
+loadTrip();
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Summary
+////////////////////////////////////////////////////////////////////////////////
+let vueSummary = new Vue({
+  el: '#summary',
+  data: {
+    view: 'summary',
+    trip: trip,
+    currentPlan: null
+  },
+  methods: {
+    switchTo: function(view) {
+      this.view = view
+    },
+    show: function(plan) {
+      this.currentPlan = plan
+    }
+  }
+})
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Modal management
+////////////////////////////////////////////////////////////////////////////////
+let vueNewTrip= new Vue({
+  el: '#newTrip',
+  data: {
+    name: ''
+  },
+  methods: {
+    save: function() {
+      trip.places = [] 
+      trip.plans = [] 
+      trip.name = this.name
+      TEST_KEY = '/Trip/' + this.name
+      writeDB(TEST_KEY, trip.toObj())
+      $(this.$el).modal('hide')
+    },
+    cancel: function() {
+      $(this.$el).modal('hide')
+    }
+  }
+})
+
+
+let loadData = {
+  trips: []
+}
+function showLoadTripDialog() {
+  $('#loadTrip').modal('show')
+  readDB('/Trip').then(values => {
+    console.log('debug', values.val())
+    loadData.trips = Object.keys(values.val())
+    console.log('availableTrips', loadData.trips)
+  })
+}
+let vueLoadTrip= new Vue({
+  el: '#loadTrip',
+  data: loadData,
+  methods: {
+    load: function(name) {
+      TEST_KEY = '/Trip/' + name
+      loadTrip()
+      $(this.$el).modal('hide')
+    },
+    cancel: function() {
+      console.log('...', this.trips.length)
+      $(this.$el).modal('hide')
+    }
+  }
+})
+
+
+let planData = {}
+planData.itineraries = [{
+  placeId: '',
+  duration: 1
+}]
+planData.travels = [] 
+planData.name = ''
+
+let vuePlan = new Vue({
+  el: '#planModal',
+  data: planData,
+  methods: {
+    save: function() {
+      console.log('plan', this.plan)
+      let itineraries = this.itineraries.map( d => {
+        return {
+          placeId: d.placeId,
+          duration: d.duration
+        }
+      })
+
+      let travels = this.travels.map( d => {
+        return {
+          from: d.from,
+          to: d.to,
+          duration: d.duration
+        }
+      })
+
+      let plan = {
+        name: this.name,
+        start: 0,
+        end: 0,
+        itineraries: itineraries,
+        travels: travels
+      }
+      trip.addPlan(plan)
+
+      // FIXME: Test
+      writeDB(TEST_KEY, trip.toObj())
+    },
+    cancel: function() {
+      $(this.$el).modal('hide')
+    },
+    getTripPlaces: function() {
+      return trip.places
+    },
+    addRow() {
+      this.itineraries.push({
+        placeId: '',
+        duration: 0
+      })
+
+      let num = this.itineraries.length;
+      if (num > 1) {
+        this.travels.push({
+          from: '', 
+          to: '',
+          duration: 0
+        })
+      }
+
+    }
+  },
+  watch: {
+    itineraries: {
+      deep: true,
+      handler: function(n, o) {
+        console.log( n.map( d => d.placeId) )
+        console.log(this.travels)
+
+        let it = this.itineraries
+        for (let i=0; i < this.travels.length; i++) {
+          let t = this.travels[i]
+          t.from = it[i].placeId
+          t.to = it[i+1].placeId
+        }
+
+      }
+    }
+  }
+})
+
+
+
+
+let destinationData = { 
+  searchStr:'', 
+  searchCandidates: [],
+  name:'',
+  notes:'' 
+}
+let vueDestination = new Vue({
+  el: '#destinationModal',
+  data: destinationData,
+  methods: {
+    save: function() {
+      trip.addDestination(this.name, this.notes)
+      this.clear()
+
+      // FIXME: Test
+      writeDB(TEST_KEY, trip.toObj())
+    },
+    cancel: function() {
+      $(this.$el).modal('hide')
+    },
+    clear: function() {
+      this.name = ''
+      this.notes = ''
+    },
+    select: function(place) {
+      trip.addPlace(place)
+      this.searchStr = ''
+
+      // FIXME: Test
+      writeDB(TEST_KEY, trip.toObj()).then( d => {
+        console.log('saving d', d)
+      })
+    }
+  },
+  watch: {
+    searchStr: function(n, o) {
+      if (this.searchStr.length < 3) {
+        this.searchCandidates = []
+        return
+      }
+      autocompleteService.getQueryPredictions({ input: this.searchStr}, predictions => {
+
+        if (!predictions || predictions === null) return
+
+        promises = []
+        predictions.forEach( p => {
+          if (!p.place_id) return 
+          promises.push(getDetailsWrapper(p.place_id))
+        })
+
+        Promise.all(promises).then( values => {
+          this.searchCandidates = []
+          values.forEach( v => {
+            if (v === null) return
+            this.searchCandidates.push(v)
+            console.log('v', v.photos[0].getUrl({maxWidth:100, maxHeight:100}))
+          })
+        })
+      })
+    }
+  }
+})
+</script>
+
+</body>
+</html>
