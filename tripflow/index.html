@@ -272,8 +272,13 @@ function showNewTripDialog() {
 const center = new google.maps.LatLng(51.0, 0.0)
 const map = new google.maps.Map(document.getElementById('googleMap'), {
   center: center,
-  zoom: 5
+  zoom: 5,
+  mapTypeControlOptions: {
+    mapTypeIds: []
+  },
+  streetViewControl: false
 });
+let mapObjects = []
 
 
 const autocompleteService = new google.maps.places.AutocompleteService()
@@ -319,6 +324,38 @@ function loadTrip() {
     })
     Promise.all(promises).then(values => {
       trip.places = values
+
+      // Test: won't really work per se on lat/lng projections, also need zoom 
+      // and adjust for only places in-use
+      mapObjects.forEach(obj => {
+        obj.setMap(null)
+      })
+      mapObjects = []
+      console.log(trip.places)
+      let _lat = 0;
+      let _lng = 0
+      trip.places.forEach(place => {
+        let lat = place.geometry.location.lat()
+        let lng = place.geometry.location.lng()
+        let c = new google.maps.Circle({
+          map: map,
+          center: { 
+            lat: lat,
+            lng: lng
+          },
+          strokeColor: '#04f',
+          strokeWeight: 2,
+          fillColor: '#04f',
+          radius: 25000
+        })
+        mapObjects.push(c)
+        _lat += lat
+        _lng += lng
+      })
+
+      _lat /= trip.places.length
+      _lng /= trip.places.length
+      map.panTo({lat:_lat, lng:_lng})
     })
   })
 }
