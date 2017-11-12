@@ -90,6 +90,18 @@ const SITE_DATA = {
     desc: 'Tensorflow classification for MLB batters based on career statistics',
     img: 'images/tensor-mlb.png',
     url: 'https://github.com/mwdchang/tensor-mlb-batting'
+  },
+  'text-gen': {
+    title: 'Text generation',
+    desc: 'Text generation with LSTM and Maximum-Likelihood models',
+    img: 'images/text-gen.png',
+    url: 'https://github.com/mwdchang/text-gen'
+  },
+  'trip-flow': {
+    title: 'Trip Flow',
+    desc: 'Trip planning organizer/visualizer - In progress',
+    img: '',
+    url: ''
   }
 
 }
