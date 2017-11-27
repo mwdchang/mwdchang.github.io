@@ -1,4 +1,5 @@
-const GITHUB_ROOT = 'https://github.com/mwdchang/'
+const GITHUB_ROOT = 'https://github.com/mwdchang/';
+const PAGE_ROOT = 'https://mwdchang.github.io/';
 
 const SITE_DATA = {
   nebulis: {
@@ -29,7 +30,7 @@ const SITE_DATA = {
     title: 'My thesis project',
     desc: 'VehicleVis: combinging text visualiation with 3D graphcis',
     img: 'images/g_thesis.png',
-    url: 'https://github.com/mwdchang/VehicleVis'
+    url: GITHUB_ROOT +'VehicleVis'
   },
   grid: {
     title: 'Grid reduction experiment',
@@ -41,13 +42,13 @@ const SITE_DATA = {
     title: 'Clock',
     desc: 'Abstract and artistic clocks written in D3',
     img: 'images/g_clock.png',
-    url: 'https://github.com/mwdchang/arc-clock'
+    url: GITHUB_ROOT + 'arc-clock'
   },
   dbscan: {
     title: 'DBSCAN',
     desc: 'DBSCAN clustering algorithm and visualization (neighbourhood growth).',
     img: 'images/dbscan.png',
-    url: 'https://github.com/mwdchang/dbscanVis'
+    url: GITHUB_ROOT + 'dbscanVis'
   },
   arc: {
     title: 'Arc diagram',
@@ -59,7 +60,7 @@ const SITE_DATA = {
     title: 'K-means',
     desc: 'K-means clustering algorithm and iteration (center seeker) visualization',
     img: 'images/kmeans.png',
-    url: 'https://github.com/mwdchang/kmeansVis'
+    url: GITHUB_ROOT + 'kmeansVis'
   },
   som: {
     title: 'SOM',
@@ -95,13 +96,19 @@ const SITE_DATA = {
     title: 'Text generation',
     desc: 'Text generation with LSTM and Maximum-Likelihood models',
     img: 'images/text-gen.png',
-    url: 'https://github.com/mwdchang/text-gen'
+    url: GITHUB_ROOT + 'text-gen'
   },
   'trip-flow': {
     title: 'Trip Flow',
     desc: 'Trip planning organizer/visualizer - In progress',
-    img: '',
-    url: ''
+    img: 'images/trip-flow.png',
+    url: 'https://mwdchang.github.io/trip-flow/'
+  },
+  louvain: {
+    title: 'Louvain detection',
+    desc: 'Louvain community clustering with force-directed layout',
+    img: 'images/louvain.png',
+    url : 'https://mwdchang.github.io/louvain'
   }
 
 }
