@@ -109,6 +109,12 @@ const SITE_DATA = {
     desc: 'Louvain community clustering with force-directed layout',
     img: 'images/louvain.png',
     url : 'https://mwdchang.github.io/louvain'
+  },
+  qlearning: {
+    title: 'Q-Learning',
+    desc: 'Navigational solver with Q-Learning technique',
+    img: 'images/qlearning.png',
+    url: 'https://mwdchang.github.io/q-learning'
   }
 
 }

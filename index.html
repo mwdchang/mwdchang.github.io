@@ -54,6 +54,7 @@
            <a href="http://mwdchang.github.io/trip-flow">Trip-Flow (Trip organizer)</a> //
            <a href="http://mwdchang.github.io/fountain-code">Luby Transform</a> //
            <a href="http://mwdchang.github.io/dbscanVis">DBSCAN</a> //
+           <a href="http://mwdchang.github.io/q-learning">Q-Learning</a> //
 
          </p>
        </div>
@@ -64,10 +65,10 @@
   <div class="container">
     Recent projects, work in progress:
     <div id="strip-recent" class="slick-container">
+      <slick-cell k="qlearning"></slick-cell>
       <slick-cell k="louvain"></slick-cell>
       <slick-cell k="trip-flow"></slick-cell>
       <slick-cell k="text-gen"></slick-cell>
-      <slick-cell k="luby"></slick-cell>
     </div>
   </div>
   <br>
@@ -98,6 +99,7 @@
   <div class="container">
     Misc tinkerings, older stuff:
     <div id="strip-misc" class="slick-container">
+      <slick-cell k="luby"></slick-cell>
       <slick-cell k="nebulis"></slick-cell>
       <slick-cell k="stckr"></slick-cell>
       <slick-cell k="thesis"></slick-cell>
@@ -137,8 +139,9 @@ new Vue({ el: '#vue-app' })
 
 const slickOptions = {
   slidesToShow: 4,
-  slidesToScroll: 2,
-  dots: true
+  slidesToScroll: 4,
+  dots: true,
+  infinite: false
 }
 
 $('#strip-recent').slick(slickOptions)
