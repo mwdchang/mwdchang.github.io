@@ -115,6 +115,12 @@ const SITE_DATA = {
     desc: 'Navigational solver with Q-Learning technique',
     img: 'images/qlearning.png',
     url: 'https://mwdchang.github.io/q-learning'
+  },
+  bh2018: {
+    title: 'Baseball Hackathon 2018',
+    desc: 'The Opinionator. Third place winner in the hackathon!!',
+    img: 'images/bh2018.png',
+    url: 'https://mwdchang.github.io/baseballhack-2018'
   }
 
 }

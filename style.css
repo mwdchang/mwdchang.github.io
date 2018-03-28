@@ -13,7 +13,7 @@ small {
 }
 
 .cell {
-  height: 150px;
+  height: 170px;
   border: 2px solid #DADADA;
   border-radius: 8px;
   display: flex !important;
