@@ -121,6 +121,12 @@ const SITE_DATA = {
     desc: 'The Opinionator. Third place winner in the hackathon!!',
     img: 'images/bh2018.png',
     url: 'https://mwdchang.github.io/baseballhack-2018'
+  },
+  'tfjs-wine': {
+    title: 'Wine classifier',
+    desc: 'Simple wine classification using TensorflowJS',
+    img: 'images/tfjs-wine.png',
+    url: 'https://mwdchang.github.io/tfjs-wine'
   }
 
 }
