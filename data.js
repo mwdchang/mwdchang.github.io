@@ -127,6 +127,13 @@ const SITE_DATA = {
     desc: 'Simple wine classification using TensorflowJS',
     img: 'images/tfjs-wine.png',
     url: 'https://mwdchang.github.io/tfjs-wine'
+  },
+  lda: {
+    title: 'LDA',
+    desc: 'Topic modelling famous quotes',
+    img: 'images/lda.png',
+    url: 'https://mwdchang.github.io/lda'
+    // url: GITHUB_ROOT + 'lda'
   }
 
 }
