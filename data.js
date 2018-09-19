@@ -100,7 +100,7 @@ const SITE_DATA = {
   },
   'trip-flow': {
     title: 'Trip Flow',
-    desc: 'Trip planning organizer/visualizer - In progress',
+    desc: 'Trip planning organizer/visualizer (Vue2, Firebase, Goole Maps) - In progress',
     img: 'images/trip-flow.png',
     url: 'https://mwdchang.github.io/trip-flow/'
   },
@@ -133,7 +133,18 @@ const SITE_DATA = {
     desc: 'Topic modelling famous quotes',
     img: 'images/lda.png',
     url: 'https://mwdchang.github.io/lda'
-    // url: GITHUB_ROOT + 'lda'
+  },
+  'tfjs-gan': {
+    title: 'GAN',
+    desc: 'A simple Generative Adversarial Network',
+    img: 'images/tfjs-gan.png',
+    url: 'https://mwdchang.github.io/tfjs-gan'
+  },
+  uhack2018: {
+    title: 'Uncharted Hackathon 2018',
+    desc: 'Pollution release correlations',
+    img: 'images/uhack2018.png',
+    url: 'http://github.com/mwdchang/uhack2018'
   }
 
 }

@@ -1,5 +1,6 @@
 body {
   background: #FEFEFE;
+  font-family: 'Open Sans', sans-serif;
 }
 
 small {
@@ -22,6 +23,7 @@ small {
   margin: 5px;
   overflow: hidden;
   line-height: 125%;
+
 }
 
 .cell-title {
@@ -45,7 +47,6 @@ small {
 	content:"";
 	background:rgba(0, 0, 0, .8);
 }
-
 
 .cell.overlay:before {
   opacity: 0;
@@ -89,8 +90,31 @@ small {
 }
 
 
-/*** hOverriding stuff ***/
+/*** Overriding stuff ***/
 .slick-dots li button:before {
   font-size: 10px;
   line-height: 20px;
+}
+
+
+/** Change things up a bit ... Sept 2018 **/
+.cell {
+  width: 220px;
+  height: 200px;
+  display: inline;
+}
+
+.slick-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-header:before {
+  /* content: "\00b6"; */
+  content: "// ";
+  color: #bbb;
+}
+.container-header:after {
+  content: " // ";
+  color: #bbb;
 }

@@ -11,6 +11,7 @@
   <meta name="google-site-verification" content="0MmLAOjD9r6EnYxqcC8Xan96ZG5zaA6YNXs4I-3hLgM" />
 
   <!-- External css goes in here -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css" />
@@ -45,8 +46,8 @@
        </div>
        <div style="margin-left: 1rem; width: 60%; font-size:90%">
          Hi, I am Daniel Chang. I am a senior research engineer. I am interested in Data Visualization, HCI and Machine Learning.
-         This page showcases some of my projects and tinkerings. Always up for collaboration on interesting ideas, drop me a
-         line at <strong>mwdchang@gmail.com</strong>.
+         This page showcases some of my projects and tinkerings. Always up for collaboration on interesting ideas and learning new things. 
+         Drop me a line at <strong>mwdchang@gmail.com</strong>.
          <p style="font-size: 80%; margin-top: 10px">
            Selected demos: 
            <a href="http://mwdchang.github.io/louvain">Louvain modularity</a> // 
@@ -64,18 +65,19 @@
   </div>
 
   <div class="container">
-    Recent projects, work in progress:
+    <div class="container-header">Recent projects, works in progress</div>
     <div id="strip-recent" class="slick-container">
-      <slick-cell k="lda"></slick-cell>
-      <slick-cell k="bh2018"></slick-cell>
+      <slick-cell k="tfjs-gan"></slick-cell>
+      <slick-cell k="uhack2018"></slick-cell>
       <slick-cell k="trip-flow"></slick-cell>
     </div>
   </div>
   <br>
 
   <div class="container">
-    Neural-Network, Data-Mining and other Machine-Learning goodies:
+    <div class="container-header">Neural-Network, Data-Mining, Machine-Learning goodies</div>
     <div id="strip-ml" class="slick-container">
+      <slick-cell k="lda"></slick-cell>
       <slick-cell k="tfjs-wine"></slick-cell>
       <slick-cell k="qlearning"></slick-cell>
       <slick-cell k="text-gen"></slick-cell>
@@ -89,7 +91,7 @@
   <br>
 
   <div class="container">
-    Data visualization and Graphics:
+    <div class="container-header">Data Visualization, Graphics</div>
     <div id="strip-viz" class="slick-container">
       <slick-cell k="arc"></slick-cell>
       <slick-cell k="polaroid"></slick-cell>
@@ -101,8 +103,9 @@
   <br>
 
   <div class="container">
-    Misc tinkerings, older stuff:
+    <div class="container-header">Tinkerings and other stuff</div>
     <div id="strip-misc" class="slick-container">
+      <slick-cell k="bh2018"></slick-cell>
       <slick-cell k="luby"></slick-cell>
       <slick-cell k="nebulis"></slick-cell>
       <slick-cell k="stckr"></slick-cell>
@@ -148,10 +151,12 @@ const slickOptions = {
   infinite: false
 }
 
+/*
 $('#strip-recent').slick(slickOptions)
 $('#strip-ml').slick(slickOptions)
 $('#strip-viz').slick(slickOptions)
 $('#strip-misc').slick(slickOptions)
+*/
 
 let c3 = new ArcClock({
    showCenter: true
