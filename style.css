@@ -15,7 +15,7 @@ small {
 
 .cell {
   height: 170px;
-  border: 2px solid #DADADA;
+  border: 2px solid #EAEAC0;
   border-radius: 8px;
   display: flex !important;
   justify-content: center;
@@ -111,10 +111,10 @@ small {
 
 .container-header:before {
   /* content: "\00b6"; */
-  content: "// ";
-  color: #bbb;
+  content: " // ";
+  color: #6bb;
 }
 .container-header:after {
   content: " // ";
-  color: #bbb;
+  color: #6bb;
 }

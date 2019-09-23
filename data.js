@@ -145,6 +145,11 @@ const SITE_DATA = {
     desc: 'Pollution release correlations',
     img: 'images/uhack2018.png',
     url: 'http://github.com/mwdchang/uhack2018'
+  },
+  attractors: {
+    title: 'Attractors',
+    desc: 'Strange attractors and other procedurally generated things',
+    img: 'images/attractors.png',
+    url: 'http://mwdchang.github.io/attractors'
   }
-
 }
