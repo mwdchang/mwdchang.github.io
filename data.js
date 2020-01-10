@@ -151,5 +151,11 @@ const SITE_DATA = {
     desc: 'Strange attractors and other procedurally generated things',
     img: 'images/attractors.png',
     url: 'http://mwdchang.github.io/attractors'
+  },
+  theOtherSide: {
+    title: 'The Other Side',
+    desc: 'Finding and visualizing antipodes',
+    img: 'images/the-other-side.png',
+    url: 'http://mwdchang.github.io/the-other-side'
   }
 }
