@@ -157,5 +157,17 @@ const SITE_DATA = {
     desc: 'Finding and visualizing antipodes',
     img: 'images/the-other-side.png',
     url: 'http://mwdchang.github.io/the-other-side'
+  },
+  polaroids: {
+    title: 'Polaroids',
+    desc: 'Polaroid shader effects',
+    img: 'images/g_polaroid.png',
+    url: 'http://mwdchang.github.io/polaroids'
+  },
+  songTiles: {
+    title: 'Song Tiles',
+    desc: 'Tile mosaic from album covers',
+    img: 'images/song-tiles.png',
+    url: 'http://mwdchang.github.io/song-tiles'
   }
 }
