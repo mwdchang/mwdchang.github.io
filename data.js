@@ -42,7 +42,7 @@ const SITE_DATA = {
     title: 'Clock',
     desc: 'Abstract and artistic clocks written in D3',
     img: 'images/g_clock.png',
-    url: GITHUB_ROOT + 'arc-clock'
+    url: 'https://mwdchang.github.io/arc-clock'
   },
   dbscan: {
     title: 'DBSCAN',
