@@ -169,5 +169,11 @@ const SITE_DATA = {
     desc: 'Tile mosaic from album covers',
     img: 'images/song-tiles.png',
     url: 'http://mwdchang.github.io/song-tiles'
+  },
+  songvis: {
+    title: 'Song Visualization',
+    desc: 'Visualizations and analyses of team\'s spotify playlist',
+    img: 'images/songvis.png',
+    url: 'http://github.com/mwdchang/songvis'
   }
 }
