@@ -175,5 +175,11 @@ const SITE_DATA = {
     desc: 'Visualizations and analyses of team\'s spotify playlist',
     img: 'images/songvis.png',
     url: 'http://github.com/mwdchang/songvis'
+  },
+  tsp: {
+    title: 'TSP-Fourier',
+    desc: 'Image synthesis with TSP and Fourier transforms',
+    img: 'images/tsp-fourier.png',
+    url: 'http://github.com/mwdchang/tsp-fourier'
   }
 }
