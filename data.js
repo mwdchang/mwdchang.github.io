@@ -10,7 +10,7 @@ const SITE_DATA = {
   },
   stckr: {
      title: 'Stckr',
-     desc: 'A flexible, API driven stacking library',
+     desc: 'A flexible, API driven stacking library in D3',
      img: 'https://raw.githubusercontent.com/mwdchang/stckr/master/stckr.gif',
      url: GITHUB_ROOT + 'stckr'
   },
@@ -28,19 +28,19 @@ const SITE_DATA = {
   },
   thesis: {
     title: 'My thesis project',
-    desc: 'VehicleVis: combinging text visualiation with 3D graphcis',
+    desc: 'VehicleVis: combinging text visualiation with 3D graphics to investigate complaint reports',
     img: 'images/g_thesis.png',
     url: GITHUB_ROOT +'VehicleVis'
   },
   grid: {
     title: 'Grid reduction experiment',
-    desc: 'Reduce grid noise by only showing localized context',
+    desc: 'Reduce grid noise by only showing localized context around the mouse cursor',
     img: 'images/g_grid.png',
     url: 'http://vialab.science.uoit.ca/mwdchang/projects/grid/testGrid.html'
   },
   clock: {
     title: 'Clock',
-    desc: 'Abstract and artistic clocks written in D3',
+    desc: 'Abstract and artistic clocks written in D3. This utilizes the notion of arcs and positive/negative spaces to represent time segments',
     img: 'images/g_clock.png',
     url: 'https://mwdchang.github.io/arc-clock'
   },
@@ -64,7 +64,7 @@ const SITE_DATA = {
   },
   som: {
     title: 'SOM',
-    desc: 'Self-organizing map',
+    desc: 'Experiment with Self-organizing map. Here we encode MLB batters\'s status to detect similar players.',
     img: 'images/som.png',
     url: 'https://mwdchang.github.io/somVis/'
   },
@@ -76,7 +76,7 @@ const SITE_DATA = {
   },
   shader: {
     title: 'WebGL Shaders',
-    desc: 'Testing Three.js shaders via procedurally generated textures',
+    desc: 'Testing Three.js shaders via procedurally generated plasma textures',
     img: 'images/g_shader.png',
     url: 'https://github.com/mwdchang/Demos/tree/master/shaderThreeJS'
   },
@@ -88,7 +88,7 @@ const SITE_DATA = {
   },
   'tensor-mlb': {
     title: 'Batter classifier',
-    desc: 'Tensorflow classification for MLB batters based on career statistics',
+    desc: 'Tensorflow classification for MLB batters based on career statistics. Divide batters into 4 different hall-of-fame categories and see if we can build a classifier based on simple stats.',
     img: 'images/tensor-mlb.png',
     url: 'https://github.com/mwdchang/tensor-mlb-batting'
   },
@@ -100,9 +100,9 @@ const SITE_DATA = {
   },
   'trip-flow': {
     title: 'Trip Flow',
-    desc: 'Trip planning organizer/visualizer (Vue2, Firebase, Goole Maps) - In progress',
+    desc: 'Trip planning organizer/visualizer (Vue2, Firebase, Goole Maps) - Unfinished',
     img: 'images/trip-flow.png',
-    url: 'https://mwdchang.github.io/trip-flow/'
+    url: 'https://github.com/mwdchang/trip-flow'
   },
   louvain: {
     title: 'Louvain detection',
@@ -124,19 +124,19 @@ const SITE_DATA = {
   },
   'tfjs-wine': {
     title: 'Wine classifier',
-    desc: 'Simple wine classification using TensorflowJS',
+    desc: 'Experiment with simple wine classification using TensorflowJS',
     img: 'images/tfjs-wine.png',
     url: 'https://mwdchang.github.io/tfjs-wine'
   },
   lda: {
     title: 'LDA',
-    desc: 'Topic modelling famous quotes',
+    desc: 'Using LDA for topic modelling against famous quotes',
     img: 'images/lda.png',
     url: 'https://mwdchang.github.io/lda'
   },
   'tfjs-gan': {
     title: 'GAN',
-    desc: 'A simple Generative Adversarial Network',
+    desc: 'A simple Generative Adversarial Network for generating hand-written digits. Written in vanilla tensorflow-js without any additional 3rd party libs. Great for understanding how GAN works.',
     img: 'images/tfjs-gan.png',
     url: 'https://mwdchang.github.io/tfjs-gan'
   },
@@ -181,5 +181,11 @@ const SITE_DATA = {
     desc: 'Image synthesis with TSP and Fourier transforms',
     img: 'images/tsp-fourier.png',
     url: 'http://github.com/mwdchang/tsp-fourier'
+  },
+  'image-util': {
+    title: 'Image Utilities',
+    desc: 'A collection of image manipulation functions for working with ImageData object. Colour filters, convolution kernels and other interesting effects',
+    img: 'images/image-util.png',
+    url: 'http://github.com/mwdchang/image-util'
   }
 }
