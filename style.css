@@ -1,5 +1,5 @@
 body {
-  background: #FEFEFE;
+  background: #F4F4F4;
   font-family: 'Open Sans', sans-serif;
   padding: 0;
 }
@@ -14,14 +14,19 @@ small {
   justify-content: flex-start;
 }
 
+
+.a-icon {
+  color: #333;
+}
+
 .cell {
   height: 170px;
-  border: 2px solid #EAEAC0;
+  border: 1px solid #BABA70;
   border-radius: 8px;
   display: flex !important;
   justify-content: center;
   align-items: center;
-  margin: 5px;
+  margin: 8px;
   overflow: hidden;
   line-height: 125%;
 
@@ -110,12 +115,19 @@ small {
   flex-wrap: wrap;
 }
 
+.container-header {
+  font-weight: 600;
+  font-size: 120%;
+  border-bottom: 1px solid #888;
+}
 .container-header:before {
   /* content: "\00b6"; */
   content: " // ";
-  color: #6bb;
+  color: #888;
+  opacity: 0.5;
 }
 .container-header:after {
   content: " // ";
-  color: #6bb;
+  color: #888;
+  opacity: 0.5;
 }

@@ -82,7 +82,7 @@ const SITE_DATA = {
   },
   luby: {
     title: 'Fountain code - LT',
-    desc: 'Fountain code encoder/decoder using Luby transformations.',
+    desc: 'An interactive visualization of Fountain code encoder/decoder using Luby transformations.',
     img: 'images/luby.png',
     url: 'https://mwdchang.github.io/fountain-code/'
   },
@@ -148,7 +148,7 @@ const SITE_DATA = {
   },
   attractors: {
     title: 'Attractors',
-    desc: 'Strange attractors and other procedurally generated things',
+    desc: 'Strange attractors, chaos systems, and other procedurally generated things',
     img: 'images/attractors.png',
     url: 'http://mwdchang.github.io/attractors'
   },
@@ -166,19 +166,19 @@ const SITE_DATA = {
   },
   songTiles: {
     title: 'Song Tiles',
-    desc: 'Tile mosaic from album covers',
+    desc: 'Tile mosaic from album covers. Divide an image into grids, and for each cell calculate the best matching tile from a pool of images.',
     img: 'images/song-tiles.png',
     url: 'http://mwdchang.github.io/song-tiles'
   },
   songvis: {
     title: 'Song Visualization',
-    desc: 'Visualizations and analyses of team\'s spotify playlist',
+    desc: 'Visualizations and analyses of team\'s spotify playlist: track attributes such as length, energey, popularity, plus analysis of lyrical similarity',
     img: 'images/songvis.png',
     url: 'http://github.com/mwdchang/songvis'
   },
   tsp: {
     title: 'TSP-Fourier',
-    desc: 'Image synthesis with TSP and Fourier transforms',
+    desc: 'Image synthesis with TSP and Fourier transforms. Convolve an image and reconstruct it as a graph, then reformulate it as Fourier transforms.',
     img: 'images/tsp-fourier.png',
     url: 'http://github.com/mwdchang/tsp-fourier'
   },
@@ -187,5 +187,11 @@ const SITE_DATA = {
     desc: 'A collection of image manipulation functions for working with ImageData object. Colour filters, convolution kernels and other interesting effects',
     img: 'images/image-util.png',
     url: 'http://github.com/mwdchang/image-util'
+  },
+  'watts': {
+    title: 'Watts-Strogatz graph generation',
+    desc: 'Straying into graph theory. Experimention with generating and visualizing graphs with "small-world" properties',
+    img: 'images/watts.png',
+    url: 'http://github.com/mwdchang/watts-strogatz'
   }
 }

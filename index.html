@@ -19,8 +19,10 @@
   <link rel="stylesheet" type="text/css" href="style.css"></link>
 
   <!-- External javascripts goes in here -->
+  <!--
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
+  -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
 
@@ -32,36 +34,44 @@
   <section id="vue-app">
 
   <div class="container">
-     <hr/>
+     <div class="container-header" style="margin-bottom: 5px">About</div>
      <div class="intro">
        <div>
-         <img height="125px" src="images/me2.jpg"></img>
+         <img height="125px" src="images/me2.jpg" style="border-radius: 15%"></img>
          <div style="font-size:150%">
-           <a href="http://ca.linkedin.com/in/mengweichang"> <i class="fa fa-linkedin-square"></i> </a>
-           <a href="https://github.com/mwdchang"> <i class="fa fa-github-square"></i> </a>
-           <a href="https://www.facebook.com/mengwei.d.chang"> <i class="fa fa-facebook-square"></i> </a>
-           <a href="https://plus.google.com/photos/114361941566420058566/albums?banner=pwa"> <i class="fa fa-google-plus-square"></i> </a>
+           <a class="a-icon" href="http://ca.linkedin.com/in/mengweichang"> <i class="fa fa-linkedin-square"></i> </a>
+           <a class="a-icon" href="https://github.com/mwdchang"> <i class="fa fa-github-square"></i> </a>
+           <a class="a-icon" href="https://www.facebook.com/mengwei.d.chang"> <i class="fa fa-facebook-square"></i> </a>
+           <a class="a-icon" href="https://plus.google.com/photos/114361941566420058566/albums?banner=pwa"> <i class="fa fa-google-plus-square"></i> </a>
          </div>
        </div>
        <div style="margin-left: 1rem; width: 60%; font-size:90%">
-         Hi, I am Daniel Chang. I am a principal research engineer. I am interested in Data Visualization, HCI and Machine Learning.
-         This page showcases some of my projects and tinkerings. Always up for collaboration on interesting ideas and learning new things. 
+         Hi there! I am Daniel Chang. I work as a principal research engineer, solving problems such as mixed-initiative approach for building predictive models, understanding unstructured streaming data (e.g. Twitter), geo-temporal data analytics, and interfaces for large touch displays. 
+         I am interested in Data Visualization, HCI and Machine Learning.
+         This page showcases some of my personal projects and tinkerings. Always up for collaboration on interesting ideas and learning new things. 
          Drop me a line at <strong>mwdchang@gmail.com</strong>.
+
+         <div>
+           <a href="/#ml">ML and AI</a> |
+           <a href="/#vis">Vis and Graphics</a> |
+           <a href="/#misc">Misc</a>
+         </div>
        </div>
        <div id="clock3" style="display:block; width: 160px; height: 160px"></div>
      </div>
   </div>
 
   <div class="container">
-    <div class="container-header">Recent projects, works in progress</div>
+    <div class="container-header">Recent projects and works in progress</div>
     <div id="strip-recent" class="slick-container">
+      <slick-cell k="watts"></slick-cell>
       <slick-cell k="image-util"></slick-cell>
     </div>
   </div>
   <br>
 
-  <div class="container">
-    <div class="container-header">Neural-Network, Data-Mining, Machine-Learning goodies</div>
+  <div class="container" id="ml">
+    <div class="container-header">Machine-Learning and AI</div>
     <div id="strip-ml" class="slick-container">
       <slick-cell k="tfjs-gan"></slick-cell>
       <slick-cell k="lda"></slick-cell>
@@ -77,8 +87,8 @@
   </div>
   <br>
 
-  <div class="container">
-    <div class="container-header">Data Visualization, Graphics</div>
+  <div class="container" id="vis">
+    <div class="container-header">Data Visualization and Graphics</div>
     <div id="strip-viz" class="slick-container">
       <slick-cell k="tsp"></slick-cell>
       <slick-cell k="songvis"></slick-cell>
@@ -95,8 +105,8 @@
   </div>
   <br>
 
-  <div class="container">
-    <div class="container-header">Tinkerings and other stuff</div>
+  <div class="container" id="misc">
+    <div class="container-header">Tinkerings</div>
     <div id="strip-misc" class="slick-container">
       <slick-cell k="bh2018"></slick-cell>
       <slick-cell k="luby"></slick-cell>
@@ -110,9 +120,9 @@
 
 
   <div class="container">
-    <div class="container-header">Unfinished, abandoned</div>
+    <div class="container-header">Unfinished</div>
     <p>
-    These projects/experiments are, for one reason or another, incomplete or have been abandoned. Nevertheless, there are still some ideas and code that can be reused/recycled for other things.
+    These projects are, for one reason or another, incomplete or abandoned. Nevertheless, there are still some ideas and code that can be reused/recycled for other things.
     </p>
 
     <div class="slick-container">
@@ -149,6 +159,7 @@ Vue.component('slick-cell', {
 
 new Vue({ el: '#vue-app' })
 
+/*
 const slickOptions = {
   slidesToShow: 4,
   slidesToScroll: 4,
@@ -156,7 +167,6 @@ const slickOptions = {
   infinite: false
 }
 
-/*
 $('#strip-recent').slick(slickOptions)
 $('#strip-ml').slick(slickOptions)
 $('#strip-viz').slick(slickOptions)
