@@ -193,5 +193,11 @@ const SITE_DATA = {
     desc: 'Straying into graph theory. Experimention with generating and visualizing graphs with "small-world" properties',
     img: 'images/watts.png',
     url: 'http://github.com/mwdchang/watts-strogatz'
+  },
+  'tr-bot': {
+    title: 'Discord bot',
+    desc: 'Analyzer bot for the online game the-reincarnation. The bot interact with users, and performs battle simulation, match analysis, and suggest optimal unit pairings. ',
+    img: 'images/tr-bot.png',
+    url: 'http://github.com/mwdchang/discord-tr-bot'
   }
 }
