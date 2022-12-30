@@ -211,5 +211,11 @@ const SITE_DATA = {
     desc: 'A research synthesis tool for organizing, annotating, and presenting research artifacts. Inspired by a real-world "workbench" metaphor with 2D-physics',
     img: 'images/workbench.png',
     url: 'http://github.com/mwdchang/workbench'
+  },
+  ocr: {
+    title: 'Tesseract OCR',
+    desc: 'A handy web-tool for extracting text from clipboard. For those times when you have to deal with other people pasting images into Slack instead of text ... :)',
+    img: 'images/ocr.png',
+    url: 'https://mwdchang.github.io/ocr-tesseract/',
   }
 }
