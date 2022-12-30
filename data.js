@@ -199,5 +199,17 @@ const SITE_DATA = {
     desc: 'Analyzer bot for the online game the-reincarnation. The bot interact with users, and performs battle simulation, match analysis, and suggest optimal unit pairings. ',
     img: 'images/tr-bot.png',
     url: 'http://github.com/mwdchang/discord-tr-bot'
+  },
+  'better-search': {
+    title: 'Better search',
+    desc: 'Experiments with better ways to search through a collection of text, with intentions to extract out co-occuring narratives with NLP/ML techniques.',
+    img: '',
+    url: 'https://github.com/mwdchang/better-search'
+  },
+  workbench: {
+    title: 'Workbench',
+    desc: 'A research synthesis tool for organizing, annotating, and presenting research artifacts. Inspired by a real-world "workbench" metaphor with 2D-physics',
+    img: 'images/workbench.png',
+    url: 'http://github.com/mwdchang/workbench'
   }
 }
