@@ -217,5 +217,11 @@ const SITE_DATA = {
     desc: 'A handy web-tool for extracting text from clipboard. For those times when you have to deal with other people pasting images into Slack instead of text ... :)',
     img: 'images/ocr.png',
     url: 'https://mwdchang.github.io/ocr-tesseract/',
+  },
+  uhack2023: {
+    title: 'Hackathon 2023',
+    desc: 'We made Azul, a Slackbot capable of summarizing and synthesizing conversations, as well as providing additional context. Imaging the case where you are back from a short vacation, or you are not familar with the topics of dicussion, Azul can help!! Azul is built on top of GPT3.5 LLM',
+    img: 'images/uhack2023.png',
+    url: 'https://github.com/mwdchang/uncharted-hack2023'
   }
 }
