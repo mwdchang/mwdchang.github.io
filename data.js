@@ -223,5 +223,11 @@ const SITE_DATA = {
     desc: 'We made Azul, a Slackbot capable of summarizing and synthesizing conversations, as well as providing additional context. Imaging the case where you are back from a short vacation, or you are not familar with the topics of dicussion, Azul can help!! Azul is built on top of GPT3.5 LLM',
     img: 'images/uhack2023.png',
     url: 'https://github.com/mwdchang/uncharted-hack2023'
+  },
+  particles: {
+    title: 'Point cloud volume',
+    desc: 'Point cloud enclosed within parametric volumes. Made with ThreeJS and Tweakpane. This came from a discussion about using a custom shader pipeline backed by textures vs vanilla memory buffers for points transforms. This is the memory buffer version, it works pretty well (pending on enclosed geometries) to about 1 million particles on a 2013 MacbookPro.',
+    img: 'images/particles.png',
+    url: 'http://mwdchang.github.io/particles-test'
   }
 }
