@@ -3,16 +3,16 @@ const PAGE_ROOT = 'https://mwdchang.github.io/';
 
 const SITE_DATA = {
   nebulis: {
-     title: 'Nebulis validator',
-     desc: 'Edit and validate Nebulis transform models. ',
-     img: 'images/g_nebulis.png',
-     url: GITHUB_ROOT + 'schema-editor'
+    title: 'Nebulis validator',
+    desc: 'Edit and validate Nebulis transform models. ',
+    img: 'images/g_nebulis.png',
+    url: GITHUB_ROOT + 'schema-editor'
   },
   stckr: {
-     title: 'Stckr',
-     desc: 'A flexible, API driven stacking library in D3',
-     img: 'https://raw.githubusercontent.com/mwdchang/stckr/master/stckr.gif',
-     url: GITHUB_ROOT + 'stckr'
+    title: 'Stckr',
+    desc: 'A flexible, API driven stacking library in D3',
+    img: 'https://raw.githubusercontent.com/mwdchang/stckr/master/stckr.gif',
+    url: GITHUB_ROOT + 'stckr'
   },
   fisheye: {
     title: 'Fisheye shader',
@@ -30,7 +30,7 @@ const SITE_DATA = {
     title: 'My thesis project',
     desc: 'VehicleVis: combinging text visualiation with 3D graphics to investigate complaint reports',
     img: 'images/g_thesis.png',
-    url: GITHUB_ROOT +'VehicleVis'
+    url: GITHUB_ROOT + 'VehicleVis'
   },
   grid: {
     title: 'Grid reduction experiment',
@@ -108,7 +108,7 @@ const SITE_DATA = {
     title: 'Louvain detection',
     desc: 'Louvain community clustering with force-directed layout',
     img: 'images/louvain.png',
-    url : 'https://mwdchang.github.io/louvain'
+    url: 'https://mwdchang.github.io/louvain'
   },
   qlearning: {
     title: 'Q-Learning',
@@ -229,5 +229,11 @@ const SITE_DATA = {
     desc: 'Point cloud enclosed within parametric volumes. Made with ThreeJS and Tweakpane. This came from a discussion about using a custom shader pipeline backed by textures vs vanilla memory buffers for points transforms. This is the memory buffer version, it works pretty well (pending on enclosed geometries) to about 1 million particles on a 2013 MacbookPro.',
     img: 'images/particles.png',
     url: 'http://mwdchang.github.io/particles-test'
+  },
+  boids: {
+    title: 'Boids simulation',
+    desc: 'Agent based modelling with boids simulation. Written in Javascript and webGL',
+    img: 'images/boids.png',
+    url: 'http://mwdchang.github.io/boids'
   }
 }
