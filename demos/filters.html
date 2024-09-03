@@ -78,6 +78,23 @@ const combined = ImageUtil.transform2Filter(
    });
 createSection(combined, 'Fisheye + SLIC + Emboss + Original');
 
+
+const sketch = ImageUtil.sketchTransform(original, {
+  levelSteps: 3,
+  lineThickness: 1.5,
+  lineLength: 40,
+  lineAlpha: 0.3,
+  lineDensity: 0.15,
+  darkeningFactor: 0.1,
+  lightness: 4,
+  edgeAmount: 0.5,
+  edgeBlurAmount: 2,
+  greyScale: false
+});
+
+createSection(sketch, 'Sketchy rendering');
+
+
 </script>
 </html>
 
