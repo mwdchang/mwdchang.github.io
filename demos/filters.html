@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+p {
+  margin-bottom: 1px;
+}
+
+</style>
+</head>
+<body class="roboto-thin">
+</body>
+<script>
+const createCanvas = (img) => {
+  const canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const context = canvas.getContext('2d');
+  context.putImageData(img, 0, 0);
+  return canvas;
+};
+const createP = (text) => {
+  const p = document.createElement('p');
+  p.innerText = text;
+  return p;
+};
+
+const createSection = (img, text) => {
+  const canvasElem = createCanvas(img);
+  const textElem = createP(text);
+  document.body.append(textElem);
+  document.body.append(canvasElem);
+  document.body.append(document.createElement('br'));
+};
+
+</script>
+<script type="module">
+import * as ImageUtil from "https://cdn.jsdelivr.net/gh/mwdchang/image-util@latest/dist/index.js"
+
+const scale = 0.75;
+const original = await ImageUtil.loadImage('../images/rose.png', { width: scale * 660, height: scale * 530 });
+
+createSection(original, 'Original');
+
+const painterly = ImageUtil.painterlyFilter(original, 4, 10);
+createSection(painterly, 'Painterly filter');
+
+const halftone = ImageUtil.halftoneFilter(painterly, { kernel: 9, rWeight: 0.05, gWeight: 0.25, bWeight: 0.4 });
+createSection(halftone, 'Painterly filter + Halftoning');
+
+const emboss = ImageUtil.glowFilter(ImageUtil.embossFilter(painterly));
+createSection(emboss, 'Painterly + Emboss + Glow');
+
+const sepia = ImageUtil.sepiaFilter(original);
+createSection(sepia, 'Sepia');
+
+const fisheye = ImageUtil.fishEyeFilter(original, 240, 200, 280, 0.0055);
+const combined = ImageUtil.transform2Filter(
+   ImageUtil.embossFilter(ImageUtil.SLIC(fisheye, 13, 18, 4, 80)),
+   fisheye,
+   (a, b) => {
+      const aW = 0.5;
+      const bW = 0.5;
+      return {
+         r: aW * a.r + bW * b.r, 
+         g: aW * a.g + bW * b.g,
+         b: aW * a.b + bW * b.b,
+         a: 255
+      }
+   });
+createSection(combined, 'Fisheye + SLIC + Emboss + Original');
+
+</script>
+</html>
+
