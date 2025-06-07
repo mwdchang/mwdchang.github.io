@@ -235,5 +235,11 @@ const SITE_DATA = {
     desc: 'Agent based modelling with boids simulation. Written in Javascript and webGL',
     img: 'images/boids.png',
     url: 'http://mwdchang.github.io/boids'
+  },
+  askExtension: {
+    title: 'Ask chrome extension',
+    desc: 'AI/LLM-assisted extension for organzing questions/answers and formulate future study plans',
+    img: '',
+    url: 'https://github.com/mwdchang/ask-extension'
   }
 }
