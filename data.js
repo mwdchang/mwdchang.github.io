@@ -241,5 +241,11 @@ const SITE_DATA = {
     desc: 'AI/LLM-assisted extension for organzing questions/answers and formulate future study plans',
     img: '',
     url: 'https://github.com/mwdchang/ask-extension'
+  },
+  transformerClassifier: {
+    title: 'Transformer classifier',
+    desc: 'A customizable, transformer-based classifier that leveages folders and their contents for easy and hassle-free setup',
+    img: 'images/transformerClassifier.png',
+    url: 'https://github.com/mwdchang/transformer-classifier'
   }
 }
