@@ -14,13 +14,11 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.css" />
   <link rel="stylesheet" type="text/css" href="style.css"></link>
 
   <!-- External javascripts goes in here -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 
   <script src="data.js"></script>
   <script src="lib/aclock.js"></script>
@@ -64,16 +62,17 @@
 
   <div class="container">
     <div class="container-header">Recent projects and works in progress</div>
-    <div id="strip-recent" class="slick-container">
-      <slick-cell k="transformerClassifier"></slick-cell>
-      <slick-cell k="askExtension"></slick-cell>
+    <div class="slick-container">
+      <slick-cell k="jsmemory"></slick-cell>
     </div>
   </div>
   <br>
 
   <div class="container" id="ml">
     <div class="container-header">Machine-Learning and AI</div>
-    <div id="strip-ml" class="slick-container">
+    <div class="slick-container">
+      <slick-cell k="transformerClassifier"></slick-cell>
+      <slick-cell k="askExtension"></slick-cell>
       <slick-cell k="uhack2023"></slick-cell>
       <slick-cell k="ocr"></slick-cell>
       <slick-cell k="better-search"></slick-cell>
@@ -96,7 +95,7 @@
     <p>
     Computer graphics and data-viz related things. I have a particular interst with procedurally generated images and image synthesis.
     </p>
-    <div id="strip-viz" class="slick-container">
+    <div class="slick-container">
       <slick-cell k="boids"></slick-cell>
       <slick-cell k="particles"></slick-cell>
       <slick-cell k="tsp"></slick-cell>
@@ -119,7 +118,7 @@
     <p>
     Miscellaneous experiments. 
     </p>
-    <div id="strip-misc" class="slick-container">
+    <div class="slick-container">
       <slick-cell k="workbench"></slick-cell>
       <slick-cell k="tr-bot"></slick-cell>
       <slick-cell k="image-util"></slick-cell>
@@ -205,7 +204,7 @@ const slickCell = {
       url: ''
     }
   },
-  template: '<a class="cell overlay" :href.bind="url" target="_blank">' +
+  template: '<a class="cell" :href.bind="url" target="_blank">' +
     '<img :src="img" style="width:100%" />' +
     '<div class="cell-desc"><div class="cell-title"> {{ title }} </div><small>{{ desc }}</small></div>' +
     '</a>'

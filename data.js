@@ -247,5 +247,11 @@ const SITE_DATA = {
     desc: 'A customizable, transformer-based classifier that leveages folders and their contents for easy and hassle-free setup',
     img: 'images/transformerClassifier.png',
     url: 'https://github.com/mwdchang/transformer-classifier'
+  },
+  jsmemory: {
+    title: 'Memory game',
+    desc: 'A simple, slick memory game in Javascript with random images',
+    img: 'images/jsmemory.png',
+    url: 'http://mwdchang.github.io/js-memory'
   }
 }

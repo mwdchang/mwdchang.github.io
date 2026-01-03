@@ -1,11 +1,8 @@
 body {
   background: #F4F4F4;
   font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
   padding: 0;
-}
-
-small {
-  line-height: 40%;
 }
 
 .intro {
@@ -14,7 +11,6 @@ small {
   justify-content: flex-start;
 }
 
-
 .a-icon {
   color: #333;
   padding: 1px 3px;
@@ -22,15 +18,14 @@ small {
 
 .cell {
   height: 170px;
-  border: 1px solid #BABA70;
+  border: 2px solid #BABABA;
   border-radius: 8px;
   display: flex !important;
   justify-content: center;
   align-items: center;
-  margin: 8px;
   overflow: hidden;
   line-height: 125%;
-
+  position: relative;
 }
 
 .cell-title {
@@ -38,34 +33,6 @@ small {
   border-left: 0.4rem solid #8BC;
   box-sizing: border-box;
   padding-left: 0.25rem;
-}
-
-
-.overlay{
-	position:relative;
-  box-sizing: border-box;
-}
-.overlay:before{
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	content:"";
-	background:rgba(0, 0, 0, .8);
-}
-
-.cell.overlay:before {
-  opacity: 0;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-	z-index: 2;
-  background-color: rgba(250, 250, 250, .9);
-}
-
-.cell.overlay:hover:before {
-  opacity: 1;
-  border-bottom: 2px solid #333;
 }
 
 .cell img {
@@ -80,41 +47,48 @@ small {
     transition: all 0.7s ease 0.1s;
 }
 
+
 .cell-desc {
-  bottom: 0;
-  left: 30px;
-  opacity: 0;
   position: absolute;
+  bottom: 0.0rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+
+  opacity: 0.85;
   padding-right: 20px;
-  -webkit-transition: all 0.5s ease 0.3s;
-  transition: all 0.5s ease 0.3s;
   z-index: 5;
-  color: #666;
+  color: #222;
+  background: #eee;
+
+  max-height: 5rem;
+  overflow: hidden;
+
+  transition:
+    max-height 0.8s ease,
+    bottom 0.8s ease,
+    opacity 0.8s ease;
 }
 
 .cell:hover .cell-desc {
-  bottom: 30px;
+  max-height: 20rem;
+  bottom: 1.0rem;
   opacity: 1;
 }
 
-
-/*** Overriding stuff ***/
-.slick-dots li button:before {
-  font-size: 10px;
-  line-height: 20px;
-}
-
-
-/** Change things up a bit ... Sept 2018 **/
 .cell {
-  width: 340px;
-  height: 310px;
-  display: inline;
+  width: 95%;
+  height: 95%;
+  display: block;
+  aspect-ratio: 1 / 1;
 }
 
 .slick-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  padding: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem 0.25rem;
 }
 
 .container-header {
@@ -134,9 +108,9 @@ small {
   opacity: 0.5;
 }
 
-
 @media only screen and (max-width: 768px) {
   body {
+    font-size: 0.75rem;
   }
 
   #clock3 {
